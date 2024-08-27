@@ -13,7 +13,6 @@ build/*
 obj_dir/*
 #*
 OLD/*
-build
 *~
 #.
 *.bin
