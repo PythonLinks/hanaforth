@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#stop on error, unset variables or pipe failures. 
+set -euo pipefail
+
 echo "Tidy up..."
 rm -f build/*
 
@@ -10,6 +13,7 @@ echo "Compile nucleus..."
 # use them, then delete them.  Pull requests accepted. 
 cp libforth/cross.fs libforth/instructionset.fs libforth/nucleus.fs libforth/nucleuslib.fs .
 gforth cross.fs instructionset.fs nucleus.fs
+
 rm cross.fs instructionset.fs nucleus.fs nucleuslib.fs
 
 echo ""
@@ -18,13 +22,13 @@ echo "Compile additional Forth sources..."
 cat libforth/coredefinitions.fs  \
     libforth/basisdefinitions.fs \
     libforth/fixpoint.fs         \
-    forth/load.fs > included.fs
+    forth/load.fs > build/included.fs
 
 # insight has to be the last file included
 # because it has the new command, which resets
 # memory pointer to the original base. 
 
-cat forthlib/insight.fs >> build/included.fs
+cat libforth/insight.fs >> build/included.fs
 
 cp build/nucleus.hex build/iceimage.hex
 cat build/included.fs | ./Vj1a > build/log.txt

@@ -379,7 +379,7 @@ decimal
     s" hex" out-suffix to file
 
     hex
-    8192  0 do
+    16384  0 do
         i tcell * tw@
         s>d <# tcell 2* 0 do # loop #> file write-line throw
     loop

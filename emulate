@@ -1,5 +1,5 @@
 #!/bin/bash
-./cnucleus
+./compile
 
 stty -icanon -echo
 ./Vj1a
