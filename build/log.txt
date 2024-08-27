@@ -1,0 +1,5 @@
+%Warning: build/iceimage.hex:8192: $readmem file ended before specified final address (IEEE 1800-2017 21.4)
+
+Hana-1 v0.1
+
+Simulation ended after 540 cycles

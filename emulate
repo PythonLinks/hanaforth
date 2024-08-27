@@ -1,0 +1,7 @@
+#!/bin/bash
+./cnucleus
+
+stty -icanon -echo
+./Vj1a
+stty sane
+
