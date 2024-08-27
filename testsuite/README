@@ -1,0 +1,80 @@
+-------------------------------------------------- -----------------------------
+   Test suite for Mecrisp-Ice
+-------------------------------------------------- -----------------------------
+
+To run the tests, go into the root hanaforth directory and type
+
+./test
+
+This directory contains test programs for HanaForth.  It is based on
+the Mecrisp Ice test suite, which is based on the the HAYES-FORTH test
+suite, with significatn modifcations for use made for mecrisp-ice.
+Mecrisp ice runs the tests in their Pascal based simulator.
+Here the tests have been upgraded to run in the Verilator simulator. 
+
+You can find the Hayes Forth test suite at
+./forth2012-test-suite-master
+
+You can find the original Hayes Forth Test suite at:
+https://github.com/gerryjackson/forth2012-test-suite/
+
+Customizations for mecrisp-ice are in individual files with fairly obvious names.
+tester.txt
+test-core.txt
+test-core-ext.txt
+test-core-plus.txt
+test-double.txt
+test-mecrisp-ice-extras.txt
+test-strings.txt
+
+Those all get merged into a single file called complete-test.txt.
+I used the comamnd "wc *.txt" and "wc complete-test.txt" to confirm that.
+
+doubletest.fth tests mecrisp doubles, but is not used by the default ./testing program. 
+
+You can read the original documentation in german at
+README_DE or in README_DE.pdf
+
+There is a copy protected version translation into English by deepl.com at
+enREADME.pdf  
+
+User input can not be tested by the test suite, and hardware specific things cannot be tested by the test suite,
+although they can hopefully be tested on the verilator emulators.
+
+Below is part of the original documentation translated to English by Google Docs. 
+
+In this environment, the (extended) Hayes-Forth tester is executed,
+which checks the definitions for their standard-compliant function and
+all operators for correct results, whereby trivial cases are also
+captured and checked. This Hayes test suite is structured logically,
+so that the tests only use primitives that have already been tested
+correctly as much as possible.
+
+Matthias adapted and expanded this test suite to the special features
+of Mecrisp-Ice.  His changes are in the files in the top level
+directory.
+
+After the tests have been run, the emulator checks the memory image
+for places that were neither read nor executed and can assign these to
+the individual definitions using a rudimentary interpretation of the
+dictionary structure. This allows the test coverage to be checked and
+completed.
+
+There are some routines in the Forth core that can only be
+meaningfully executed when used manually (e.g. pressing the delete key
+when typing commands), only in the event of an error (e.g. aborting
+the program) or only in real hardware (IO registers, interrupts). and
+therefore not captured by the automatic tests. However, these cases
+are manageable, can be tried out in real hardware and have been found
+to be good.
+
+The entire test suite can also be executed on the logic of the "real"
+processor simulated in Verilator. This makes it possible to compare
+the test results in the emulator with the actual implementation of the
+processor in logic and to exclude errors in the processor source code
+itself, at least to the extent that they change its functionality as
+covered by the test. However, in Verilator, juggling the memory image
+itself is more complicated, so the test coverage sample is performed
+in the emulator.
+
+-------

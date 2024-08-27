@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#stop on error, unset variables or pipe failures. 
+set -euo pipefail
+
+echo "Tidy up..."
+rm -f build/*
+
+echo "Compile nucleus..."
+# I tried using gforth to access the forth files from the libforth directory
+# that would be cleaner, but it just would not work.
+# So like Mecrisp Ice, I now copy them to the local directory
+# use them, then delete them.  Pull requests accepted. 
+cp libforth/cross.fs libforth/instructionset.fs libforth/nucleus.fs libforth/nucleuslib.fs .
+gforth cross.fs instructionset.fs nucleus.fs
+
+rm cross.fs instructionset.fs nucleus.fs nucleuslib.fs
+
+echo ""
+echo "Compile additional Forth sources..."
+
+cat libforth/coredefinitions.fs  \
+    libforth/basisdefinitions.fs \
+    libforth/fixpoint.fs         \
+    forth/load.fs > build/included.fs
+
+# insight has to be the last file included
+# because it has the new command, which resets
+# memory pointer to the original base. 
+
+cat libforth/insight.fs >> build/included.fs
+
+cd testsuite
+cat tester.txt test-core.txt test-core-ext.txt test-core-plus.txt test-double.txt test-strings.txt > complete-test.txt
+#test-mecrisp-ice-extras.txt
+
+cd ..
+
+cat testsuite/complete-test.txt >> build/included.fs
+
+cp build/nucleus.hex build/iceimage.hex
+
+echo "Running the tests, this could take 30 seconds on my Mac."
+cat build/included.fs | ./Vj1a > build/log.txt
+

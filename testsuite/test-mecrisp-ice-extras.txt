@@ -1,0 +1,520 @@
+
+\ ------------------------------------------------------------------------------
+TESTING D<>
+
+T{ -1. -1. D<> -> FALSE  }T
+T{ -1.  0. D<> -> TRUE }T
+T{ -1.  1. D<> -> TRUE }T
+T{  0. -1. D<> -> TRUE }T
+T{  0.  0. D<> -> FALSE  }T
+T{  0.  1. D<> -> TRUE }T
+T{  1. -1. D<> -> TRUE }T
+T{  1.  0. D<> -> TRUE }T
+T{  1.  1. D<> -> FALSE  }T
+
+T{ 0 -1 0 -1 D<> -> FALSE  }T
+T{ 0 -1 0  0 D<> -> TRUE }T
+T{ 0 -1 0  1 D<> -> TRUE }T
+T{ 0  0 0 -1 D<> -> TRUE }T
+T{ 0  0 0  0 D<> -> FALSE  }T
+T{ 0  0 0  1 D<> -> TRUE }T
+T{ 0  1 0 -1 D<> -> TRUE }T
+T{ 0  1 0  0 D<> -> TRUE }T
+T{ 0  1 0  1 D<> -> FALSE  }T
+
+T{ MAX-2INT MIN-2INT D<> -> TRUE }T
+T{ MAX-2INT 0. D<> -> TRUE }T
+T{ MAX-2INT MAX-2INT D<> -> FALSE }T
+T{ MAX-2INT HI-2INT  D<> -> TRUE }T
+T{ MAX-2INT MIN-2INT D<> -> TRUE }T
+T{ MIN-2INT MIN-2INT D<> -> FALSE }T
+T{ MIN-2INT LO-2INT  D<>  -> TRUE }T
+T{ MIN-2INT MAX-2INT D<> -> TRUE }T
+
+\ ------------------------------------------------------------------------------
+TESTING D> D<= D>=
+
+T{  0.  1. 2SWAP D> -> TRUE  }T
+T{  0.  0. 2SWAP D> -> FALSE }T
+T{  1.  0. 2SWAP D> -> FALSE }T
+T{ -1.  1. 2SWAP D> -> TRUE  }T
+T{ -1.  0. 2SWAP D> -> TRUE  }T
+T{ -2. -1. 2SWAP D> -> TRUE  }T
+T{ -1. -2. 2SWAP D> -> FALSE }T
+T{ 0 1   1. 2SWAP D> -> FALSE }T  \ Suggested by Helmut Eller
+T{ 1.  0 1  2SWAP D> -> TRUE  }T
+T{ 0 -1 1 -2 2SWAP D> -> FALSE }T
+T{ 1 -2 0 -1 2SWAP D> -> TRUE  }T
+T{ -1. MAX-2INT 2SWAP D> -> TRUE }T
+T{ MIN-2INT MAX-2INT 2SWAP D> -> TRUE }T
+T{ MAX-2INT -1. 2SWAP D> -> FALSE }T
+T{ MAX-2INT MIN-2INT 2SWAP D> -> FALSE }T
+T{ MAX-2INT 2DUP -1. D+ 2SWAP D> -> FALSE }T
+T{ MIN-2INT 2DUP  1. D+ 2SWAP D> -> TRUE  }T
+T{ MAX-INTD S>D 2DUP 1. D+ 2SWAP D> -> TRUE }T \ Ensure 2SWAP D> acts on MS cells
+
+
+T{  0.  1. 2SWAP D<= INVERT -> TRUE  }T
+T{  0.  0. 2SWAP D<= INVERT -> FALSE }T
+T{  1.  0. 2SWAP D<= INVERT -> FALSE }T
+T{ -1.  1. 2SWAP D<= INVERT -> TRUE  }T
+T{ -1.  0. 2SWAP D<= INVERT -> TRUE  }T
+T{ -2. -1. 2SWAP D<= INVERT -> TRUE  }T
+T{ -1. -2. 2SWAP D<= INVERT -> FALSE }T
+T{ 0 1   1. 2SWAP D<= INVERT -> FALSE }T  \ Suggested by Helmut Eller
+T{ 1.  0 1  2SWAP D<= INVERT -> TRUE  }T
+T{ 0 -1 1 -2 2SWAP D<= INVERT -> FALSE }T
+T{ 1 -2 0 -1 2SWAP D<= INVERT -> TRUE  }T
+T{ -1. MAX-2INT 2SWAP D<= INVERT -> TRUE }T
+T{ MIN-2INT MAX-2INT 2SWAP D<= INVERT -> TRUE }T
+T{ MAX-2INT -1. 2SWAP D<= INVERT -> FALSE }T
+T{ MAX-2INT MIN-2INT 2SWAP D<= INVERT -> FALSE }T
+T{ MAX-2INT 2DUP -1. D+ 2SWAP D<= INVERT -> FALSE }T
+T{ MIN-2INT 2DUP  1. D+ 2SWAP D<= INVERT -> TRUE  }T
+T{ MAX-INTD S>D 2DUP 1. D+ 2SWAP D<= INVERT -> TRUE }T \ Ensure 2SWAP D<= INVERT acts on MS cells
+
+
+T{  0.  1. D>= INVERT -> TRUE  }T
+T{  0.  0. D>= INVERT -> FALSE }T
+T{  1.  0. D>= INVERT -> FALSE }T
+T{ -1.  1. D>= INVERT -> TRUE  }T
+T{ -1.  0. D>= INVERT -> TRUE  }T
+T{ -2. -1. D>= INVERT -> TRUE  }T
+T{ -1. -2. D>= INVERT -> FALSE }T
+T{ 0 1   1. D>= INVERT -> FALSE }T  \ Suggested by Helmut Eller
+T{ 1.  0 1  D>= INVERT -> TRUE  }T
+T{ 0 -1 1 -2 D>= INVERT -> FALSE }T
+T{ 1 -2 0 -1 D>= INVERT -> TRUE  }T
+T{ -1. MAX-2INT D>= INVERT -> TRUE }T
+T{ MIN-2INT MAX-2INT D>= INVERT -> TRUE }T
+T{ MAX-2INT -1. D>= INVERT -> FALSE }T
+T{ MAX-2INT MIN-2INT D>= INVERT -> FALSE }T
+T{ MAX-2INT 2DUP -1. D+ D>= INVERT -> FALSE }T
+T{ MIN-2INT 2DUP  1. D+ D>= INVERT -> TRUE  }T
+T{ MAX-INTD S>D 2DUP 1. D+ D>= INVERT -> TRUE }T \ Ensure D>= INVERT acts on MS cells
+
+
+\ ------------------------------------------------------------------------------
+TESTING D> D<= D>=
+
+T{  1.  1. 2SWAP DU> -> FALSE }T
+T{  1. -1. 2SWAP DU> -> TRUE  }T
+T{ -1.  1. 2SWAP DU> -> FALSE }T
+T{ -1. -2. 2SWAP DU> -> FALSE }T
+T{ 0 1   1. 2SWAP DU> -> FALSE }T
+T{ 1.  0 1  2SWAP DU> -> TRUE  }T
+T{ 0 -1 1 -2 2SWAP DU> -> FALSE }T
+T{ 1 -2 0 -1 2SWAP DU> -> TRUE  }T
+
+T{ MAX-2INT HI-2INT  2SWAP DU> -> FALSE }T
+T{ HI-2INT  MAX-2INT 2SWAP DU> -> TRUE  }T
+T{ MAX-2INT MIN-2INT 2SWAP DU> -> TRUE }T
+T{ MIN-2INT MAX-2INT 2SWAP DU> -> FALSE }T
+T{ MIN-2INT LO-2INT  2SWAP DU> -> TRUE }T
+
+
+T{  1.  1. 2SWAP DU<= INVERT -> FALSE }T
+T{  1. -1. 2SWAP DU<= INVERT -> TRUE  }T
+T{ -1.  1. 2SWAP DU<= INVERT -> FALSE }T
+T{ -1. -2. 2SWAP DU<= INVERT -> FALSE }T
+T{ 0 1   1. 2SWAP DU<= INVERT -> FALSE }T
+T{ 1.  0 1  2SWAP DU<= INVERT -> TRUE  }T
+T{ 0 -1 1 -2 2SWAP DU<= INVERT -> FALSE }T
+T{ 1 -2 0 -1 2SWAP DU<= INVERT -> TRUE  }T
+
+T{ MAX-2INT HI-2INT  2SWAP DU<= INVERT -> FALSE }T
+T{ HI-2INT  MAX-2INT 2SWAP DU<= INVERT -> TRUE  }T
+T{ MAX-2INT MIN-2INT 2SWAP DU<= INVERT -> TRUE }T
+T{ MIN-2INT MAX-2INT 2SWAP DU<= INVERT -> FALSE }T
+T{ MIN-2INT LO-2INT  2SWAP DU<= INVERT -> TRUE }T
+
+
+T{  1.  1. DU>= INVERT -> FALSE }T
+T{  1. -1. DU>= INVERT -> TRUE  }T
+T{ -1.  1. DU>= INVERT -> FALSE }T
+T{ -1. -2. DU>= INVERT -> FALSE }T
+T{ 0 1   1. DU>= INVERT -> FALSE }T
+T{ 1.  0 1  DU>= INVERT -> TRUE  }T
+T{ 0 -1 1 -2 DU>= INVERT -> FALSE }T
+T{ 1 -2 0 -1 DU>= INVERT -> TRUE  }T
+
+T{ MAX-2INT HI-2INT  DU>= INVERT -> FALSE }T
+T{ HI-2INT  MAX-2INT DU>= INVERT -> TRUE  }T
+T{ MAX-2INT MIN-2INT DU>= INVERT -> TRUE }T
+T{ MIN-2INT MAX-2INT DU>= INVERT -> FALSE }T
+T{ MIN-2INT LO-2INT  DU>= INVERT -> TRUE }T
+
+\ ------------------------------------------------------------------------------
+TESTING UD.
+
+: UDOUBLEOUTPUT
+   CR ." You should see lines duplicated:" CR
+   5 SPACES "DBL1" TYPE CR
+   5 SPACES DBL1 UD. CR
+;
+
+T{ UDOUBLEOUTPUT -> }T
+
+\ ------------------------------------------------------------------------------
+TESTING DSHR DSHL
+
+T{ 0. DSHL -> 0. DSHL }T
+T{ MIN-INTD 0 DSHL -> 0 1 }T
+T{ HI-2INT DSHL -> MAX-2INT 1. D- }T
+T{ LO-2INT DSHL -> MIN-2INT }T
+
+T{ 0. DSHR -> 0. }T
+T{ 1. DSHR -> 0. }T
+T{ 0 1 DSHR -> MIN-INTD 0 }T
+T{ MAX-2INT DSHR -> HI-2INT }T
+
+\ ------------------------------------------------------------------------------
+TESTING NOT
+
+T{ 0S NOT -> 1S }T
+T{ 1S NOT -> 0S }T
+
+
+\ ------------------------------------------------------------------------------
+TESTING <= >=
+
+T{ 0 1 >= INVERT -> <TRUE> }T
+T{ 1 2 >= INVERT -> <TRUE> }T
+T{ -1 0 >= INVERT -> <TRUE> }T
+T{ -1 1 >= INVERT -> <TRUE> }T
+T{ MIN-INT 0 >= INVERT -> <TRUE> }T
+T{ MIN-INT MAX-INT >= INVERT -> <TRUE> }T
+T{ 0 MAX-INT >= INVERT -> <TRUE> }T
+T{ 0 0 >= INVERT -> <FALSE> }T
+T{ 1 1 >= INVERT -> <FALSE> }T
+T{ 1 0 >= INVERT -> <FALSE> }T
+T{ 2 1 >= INVERT -> <FALSE> }T
+T{ 0 -1 >= INVERT -> <FALSE> }T
+T{ 1 -1 >= INVERT -> <FALSE> }T
+T{ 0 MIN-INT >= INVERT -> <FALSE> }T
+T{ MAX-INT MIN-INT >= INVERT -> <FALSE> }T
+T{ MAX-INT 0 >= INVERT -> <FALSE> }T
+
+T{ 0 1 <= INVERT -> <FALSE> }T
+T{ 1 2 <= INVERT -> <FALSE> }T
+T{ -1 0 <= INVERT -> <FALSE> }T
+T{ -1 1 <= INVERT -> <FALSE> }T
+T{ MIN-INT 0 <= INVERT -> <FALSE> }T
+T{ MIN-INT MAX-INT <= INVERT -> <FALSE> }T
+T{ 0 MAX-INT <= INVERT -> <FALSE> }T
+T{ 0 0 <= INVERT -> <FALSE> }T
+T{ 1 1 <= INVERT -> <FALSE> }T
+T{ 1 0 <= INVERT -> <TRUE> }T
+T{ 2 1 <= INVERT -> <TRUE> }T
+T{ 0 -1 <= INVERT -> <TRUE> }T
+T{ 1 -1 <= INVERT -> <TRUE> }T
+T{ 0 MIN-INT <= INVERT -> <TRUE> }T
+T{ MAX-INT MIN-INT <= INVERT -> <TRUE> }T
+T{ MAX-INT 0 <= INVERT -> <TRUE> }T
+
+\ ------------------------------------------------------------------------------
+TESTING U<= U>= UMIN UMAX
+
+T{ 0 1 U>= INVERT -> <TRUE> }T
+T{ 1 2 U>= INVERT -> <TRUE> }T
+T{ 0 MID-UINT U>= INVERT -> <TRUE> }T
+T{ 0 MAX-UINT U>= INVERT -> <TRUE> }T
+T{ MID-UINT MAX-UINT U>= INVERT -> <TRUE> }T
+T{ 0 0 U>= INVERT -> <FALSE> }T
+T{ 1 1 U>= INVERT -> <FALSE> }T
+T{ 1 0 U>= INVERT -> <FALSE> }T
+T{ 2 1 U>= INVERT -> <FALSE> }T
+T{ MID-UINT 0 U>= INVERT -> <FALSE> }T
+T{ MAX-UINT 0 U>= INVERT -> <FALSE> }T
+T{ MAX-UINT MID-UINT U>= INVERT -> <FALSE> }T
+
+T{ 0 1 SWAP U<= INVERT -> <TRUE> }T
+T{ 1 2 SWAP U<= INVERT -> <TRUE> }T
+T{ 0 MID-UINT SWAP U<= INVERT -> <TRUE> }T
+T{ 0 MAX-UINT SWAP U<= INVERT -> <TRUE> }T
+T{ MID-UINT MAX-UINT SWAP U<= INVERT -> <TRUE> }T
+T{ 0 0 SWAP U<= INVERT -> <FALSE> }T
+T{ 1 1 SWAP U<= INVERT -> <FALSE> }T
+T{ 1 0 SWAP U<= INVERT -> <FALSE> }T
+T{ 2 1 SWAP U<= INVERT -> <FALSE> }T
+T{ MID-UINT 0 SWAP U<= INVERT -> <FALSE> }T
+T{ MAX-UINT 0 SWAP U<= INVERT -> <FALSE> }T
+T{ MAX-UINT MID-UINT SWAP U<= INVERT -> <FALSE> }T
+
+
+T{ 0 1 UMIN -> 0 }T
+T{ 1 2 UMIN -> 1 }T
+T{ -1 0 UMIN -> 0 }T
+T{ -1 1 UMIN -> 1 }T
+T{ MIN-INT 0 UMIN -> 0 }T
+T{ MIN-INT MAX-INT UMIN -> MAX-INT }T
+T{ 0 MAX-INT UMIN -> 0 }T
+T{ 0 0 UMIN -> 0 }T
+T{ 1 1 UMIN -> 1 }T
+T{ 1 0 UMIN -> 0 }T
+T{ 2 1 UMIN -> 1 }T
+T{ 0 -1 UMIN -> 0 }T
+T{ 1 -1 UMIN -> 1 }T
+T{ 0 MIN-INT UMIN -> 0 }T
+T{ MAX-INT MIN-INT UMIN -> MAX-INT }T
+T{ MAX-INT 0 UMIN -> 0 }T
+
+T{ 0 1 UMAX -> 1 }T
+T{ 1 2 UMAX -> 2 }T
+T{ -1 0 UMAX -> -1 }T
+T{ -1 1 UMAX -> -1 }T
+T{ MIN-INT 0 UMAX -> MIN-INT }T
+T{ MIN-INT MAX-INT UMAX -> MIN-INT }T
+T{ 0 MAX-INT UMAX -> MAX-INT }T
+T{ 0 0 UMAX -> 0 }T
+T{ 1 1 UMAX -> 1 }T
+T{ 1 0 UMAX -> 1 }T
+T{ 2 1 UMAX -> 2 }T
+T{ 0 -1 UMAX -> -1 }T
+T{ 1 -1 UMAX -> -1 }T
+T{ 0 MIN-INT UMAX -> MIN-INT }T
+T{ MAX-INT MIN-INT UMAX -> MIN-INT }T
+T{ MAX-INT 0 UMAX -> MAX-INT }T
+
+\ ------------------------------------------------------------------------------
+TESTING F* F/
+
+T{ 2,0 1,0 F/ -> 2,0 }T
+T{ 2,0 2,0 F/ -> 1,0 }T
+T{ 2,0 4,0 F/ -> 0,5 }T
+T{ 2,0 8,0 F/ -> 0,25 }T
+
+T{ 2,0 -1,0 F/ -> -2,0 }T
+T{ 2,0 -2,0 F/ -> -1,0 }T
+T{ 2,0 -4,0 F/ -> -0,5 }T
+T{ 2,0 -8,0 F/ -> -0,25 }T
+
+T{ -2,0 1,0 F/ -> -2,0 }T
+T{ -2,0 2,0 F/ -> -1,0 }T
+T{ -2,0 4,0 F/ -> -0,5 }T
+T{ -2,0 8,0 F/ -> -0,25 }T
+
+T{ -2,0 -1,0 F/ -> 2,0 }T
+T{ -2,0 -2,0 F/ -> 1,0 }T
+T{ -2,0 -4,0 F/ -> 0,5 }T
+T{ -2,0 -8,0 F/ -> 0,25 }T
+
+
+T{ 0,25 1,0 F* -> 0,25 }T
+T{ 0,25 2,0 F* -> 0,5 }T
+T{ 0,25 4,0 F* -> 1,0 }T
+T{ 0,25 8,0 F* -> 2,0 }T
+
+T{ 0,25 -1,0 F* -> -0,25 }T
+T{ 0,25 -2,0 F* -> -0,5 }T
+T{ 0,25 -4,0 F* -> -1,0 }T
+T{ 0,25 -8,0 F* -> -2,0 }T
+
+T{ -0,25 1,0 F* -> -0,25 }T
+T{ -0,25 2,0 F* -> -0,5 }T
+T{ -0,25 4,0 F* -> -1,0 }T
+T{ -0,25 8,0 F* -> -2,0 }T
+
+T{ -0,25 -1,0 F* -> 0,25 }T
+T{ -0,25 -2,0 F* -> 0,5 }T
+T{ -0,25 -4,0 F* -> 1,0 }T
+T{ -0,25 -8,0 F* -> 2,0 }T
+
+\ ------------------------------------------------------------------------------
+TESTING F. F.N
+
+T{ 3,14159 F. -> }T
+T{ 3,14159 3 F.N -> }T
+
+T{ -3,14159 F. -> }T
+T{ -3,14159 3 F.N -> }T
+
+T{ 3,14159 0 F.N -> }T
+
+\ ------------------------------------------------------------------------------
+TESTING S>F
+
+T{  0 S>F ->  0,0 }T
+T{  1 S>F ->  1,0 }T
+T{ -1 S>F -> -1,0 }T
+
+\ ------------------------------------------------------------------------------
+TESTING RDEPTH
+
+T{ : RD0 RDEPTH RDEPTH SWAP - ; RD0 -> 0 }T
+T{ : RD1 RDEPTH 0 >R RDEPTH RDROP SWAP - ; RD1 -> 1 }T
+T{ : RD2 RDEPTH 0 >R 1 >R RDEPTH RDROP RDROP SWAP - ; RD2 -> 2 }T
+
+\ ------------------------------------------------------------------------------
+TESTING ARSHIFT
+
+HEX
+
+T{ 0S 1 ARSHIFT -> 0S }T
+T{ 1 1 ARSHIFT -> 0 }T
+T{ 4000 1 ARSHIFT -> 2000 }T
+T{ 1S 1 ARSHIFT -> 1S }T            \ MSB PROPOGATED
+T{ 1S 1 XOR 1 ARSHIFT -> 1S }T
+T{ MSB 1 ARSHIFT MSB AND -> MSB }T
+
+T{ 1 0 ARSHIFT -> 1 }T
+T{ 1 1 ARSHIFT -> 0 }T
+T{ 2 1 ARSHIFT -> 1 }T
+T{ 4 2 ARSHIFT -> 1 }T
+
+DECIMAL
+
+\ ------------------------------------------------------------------------------
+TESTING 2OR 2AND 2XOR
+
+HEX
+
+T{ 0S 0S 0S 0S 2OR -> 0S 0S }T
+T{ 0S 0S 0S 1S 2OR -> 0S 1S }T
+T{ 0S 0S 1S 0S 2OR -> 1S 0S }T
+T{ 0S 0S 1S 1S 2OR -> 1S 1S }T
+
+T{ 0S 1S 0S 0S 2OR -> 0S 1S }T
+T{ 0S 1S 0S 1S 2OR -> 0S 1S }T
+T{ 0S 1S 1S 0S 2OR -> 1S 1S }T
+T{ 0S 1S 1S 1S 2OR -> 1S 1S }T
+
+T{ 1S 0S 0S 0S 2OR -> 1S 0S }T
+T{ 1S 0S 0S 1S 2OR -> 1S 1S }T
+T{ 1S 0S 1S 0S 2OR -> 1S 0S }T
+T{ 1S 0S 1S 1S 2OR -> 1S 1S }T
+
+T{ 1S 1S 0S 0S 2OR -> 1S 1S }T
+T{ 1S 1S 0S 1S 2OR -> 1S 1S }T
+T{ 1S 1S 1S 0S 2OR -> 1S 1S }T
+T{ 1S 1S 1S 1S 2OR -> 1S 1S }T
+
+
+T{ 0S 0S 0S 0S 2AND -> 0S 0S }T
+T{ 0S 0S 0S 1S 2AND -> 0S 0S }T
+T{ 0S 0S 1S 0S 2AND -> 0S 0S }T
+T{ 0S 0S 1S 1S 2AND -> 0S 0S }T
+
+T{ 0S 1S 0S 0S 2AND -> 0S 0S }T
+T{ 0S 1S 0S 1S 2AND -> 0S 1S }T
+T{ 0S 1S 1S 0S 2AND -> 0S 0S }T
+T{ 0S 1S 1S 1S 2AND -> 0S 1S }T
+
+T{ 1S 0S 0S 0S 2AND -> 0S 0S }T
+T{ 1S 0S 0S 1S 2AND -> 0S 0S }T
+T{ 1S 0S 1S 0S 2AND -> 1S 0S }T
+T{ 1S 0S 1S 1S 2AND -> 1S 0S }T
+
+T{ 1S 1S 0S 0S 2AND -> 0S 0S }T
+T{ 1S 1S 0S 1S 2AND -> 0S 1S }T
+T{ 1S 1S 1S 0S 2AND -> 1S 0S }T
+T{ 1S 1S 1S 1S 2AND -> 1S 1S }T
+
+
+T{ 0S 0S 0S 0S 2XOR -> 0S 0S }T
+T{ 0S 0S 0S 1S 2XOR -> 0S 1S }T
+T{ 0S 0S 1S 0S 2XOR -> 1S 0S }T
+T{ 0S 0S 1S 1S 2XOR -> 1S 1S }T
+
+T{ 0S 1S 0S 0S 2XOR -> 0S 1S }T
+T{ 0S 1S 0S 1S 2XOR -> 0S 0S }T
+T{ 0S 1S 1S 0S 2XOR -> 1S 1S }T
+T{ 0S 1S 1S 1S 2XOR -> 1S 0S }T
+
+T{ 1S 0S 0S 0S 2XOR -> 1S 0S }T
+T{ 1S 0S 0S 1S 2XOR -> 1S 1S }T
+T{ 1S 0S 1S 0S 2XOR -> 0S 0S }T
+T{ 1S 0S 1S 1S 2XOR -> 0S 1S }T
+
+T{ 1S 1S 0S 0S 2XOR -> 1S 1S }T
+T{ 1S 1S 0S 1S 2XOR -> 1S 0S }T
+T{ 1S 1S 1S 0S 2XOR -> 0S 1S }T
+T{ 1S 1S 1S 1S 2XOR -> 0S 0S }T
+
+DECIMAL
+
+
+\ ------------------------------------------------------------------------------
+TESTING 2LSHIFT 2RSHIFT 2ARSHIFT
+
+0    CONSTANT 0S
+0 INVERT CONSTANT 1S
+
+T{ 1 0 1 2LSHIFT -> 1 0 D2* }T
+T{ 1 0 2 2LSHIFT -> 1 0 D2* D2* }T
+T{ 1 0 3 2LSHIFT -> 1 0 D2* D2* D2* }T
+
+T{ 0 1 1 2LSHIFT -> 0 1 D2* }T
+T{ 0 1 2 2LSHIFT -> 0 1 D2* D2* }T
+T{ 0 1 3 2LSHIFT -> 0 1 D2* D2* D2* }T
+
+T{ 1S 0S 1 2LSHIFT -> 1S 0S D2* }T
+T{ 1S 0S 2 2LSHIFT -> 1S 0S D2* D2* }T
+T{ 1S 0S 3 2LSHIFT -> 1S 0S D2* D2* D2* }T
+
+T{ 0S 1S 1 2LSHIFT -> 0S 1S D2* }T
+T{ 0S 1S 2 2LSHIFT -> 0S 1S D2* D2* }T
+T{ 0S 1S 3 2LSHIFT -> 0S 1S D2* D2* D2* }T
+
+
+T{ 1 0 1 2ARSHIFT -> 1 0 D2/ }T
+T{ 1 0 2 2ARSHIFT -> 1 0 D2/ D2/ }T
+T{ 1 0 3 2ARSHIFT -> 1 0 D2/ D2/ D2/ }T
+
+T{ 0 1 1 2ARSHIFT -> 0 1 D2/ }T
+T{ 0 1 2 2ARSHIFT -> 0 1 D2/ D2/ }T
+T{ 0 1 3 2ARSHIFT -> 0 1 D2/ D2/ D2/ }T
+
+T{ 1S 0S 1 2ARSHIFT -> 1S 0S D2/ }T
+T{ 1S 0S 2 2ARSHIFT -> 1S 0S D2/ D2/ }T
+T{ 1S 0S 3 2ARSHIFT -> 1S 0S D2/ D2/ D2/ }T
+
+T{ 0S 1S 1 2ARSHIFT -> 0S 1S D2/ }T
+T{ 0S 1S 2 2ARSHIFT -> 0S 1S D2/ D2/ }T
+T{ 0S 1S 3 2ARSHIFT -> 0S 1S D2/ D2/ D2/ }T
+
+
+T{ 1 0 1 2RSHIFT -> 1 0 D2/ }T
+T{ 1 0 2 2RSHIFT -> 1 0 D2/ D2/ }T
+T{ 1 0 3 2RSHIFT -> 1 0 D2/ D2/ D2/ }T
+
+T{ 0 1 1 2RSHIFT -> 0 1 D2/ }T
+T{ 0 1 2 2RSHIFT -> 0 1 D2/ D2/ }T
+T{ 0 1 3 2RSHIFT -> 0 1 D2/ D2/ D2/ }T
+
+T{ 1S 0S 1 2RSHIFT -> 1S 0S D2/ }T
+T{ 1S 0S 2 2RSHIFT -> 1S 0S D2/ D2/ }T
+T{ 1S 0S 3 2RSHIFT -> 1S 0S D2/ D2/ D2/ }T
+
+T{ 0S MAX-INT 1 2RSHIFT -> 0S MAX-INT D2/ }T
+T{ 0S MAX-INT 2 2RSHIFT -> 0S MAX-INT D2/ D2/ }T
+T{ 0S MAX-INT 3 2RSHIFT -> 0S MAX-INT D2/ D2/ D2/ }T
+
+T{ 0 MAX-INT  1 CELLS 8 * 2ARSHIFT -> MAX-INT  0  }T
+T{ 0 MAX-UINT 1 CELLS 8 * 2ARSHIFT -> MAX-UINT 1S }T
+
+\ ------------------------------------------------------------------------------
+TESTING UD/MOD
+
+T{ 0. 2. UD/MOD -> 0. 0. }T
+T{ 1. 2. UD/MOD -> 1. 0. }T
+T{ 2. 2. UD/MOD -> 0. 1. }T
+T{ 3. 2. UD/MOD -> 1. 1. }T
+T{ 4. 2. UD/MOD -> 0. 2. }T
+
+T{  3.  2. UD/MOD ->  1.                 1.  }T
+T{ -3.  2. UD/MOD ->  1. MAX-UINT 1- MAX-INT }T
+T{  3. -2. UD/MOD ->  3.                 0.  }T
+T{ -3. -2. UD/MOD -> -3.                 0.  }T
+
+\ ------------------------------------------------------------------------------
+TESTING ."
+
+T{ ." Hello world" -> }T
+
+\ ------------------------------------------------------------------------------
+\ Lesezugriffe auf die Dictionarystruktur und Debug-Werkzeuge
+
+insight
+words
+.s

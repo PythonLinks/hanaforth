@@ -1,0 +1,74 @@
+\ To test the ANS Forth String word set
+
+\ This program was written by Gerry Jackson in 2006, with contributions from
+\ others where indicated, and is in the public domain - it can be distributed
+\ and/or modified in any way but please retain this notice.
+
+\ This program is distributed in the hope that it will be useful,
+\ but WITHOUT ANY WARRANTY; without even the implied warranty of
+\ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+\ The tests are not claimed to be comprehensive or correct 
+
+\ ------------------------------------------------------------------------------
+\ Version 0.13 13 Nov 2015 Interpretive use of S" replaced by $" from
+\                          utilities.fth
+\         0.11 25 April 2015 Tests for REPLACES SUBSTITUTE UNESCAPE added
+\         0.6 1 April 2012 Tests placed in the public domain.
+\         0.5 29 April 2010 Added tests for SEARCH and COMPARE with
+\             all strings zero length (suggested by Krishna Myneni).
+\             SLITERAL test amended in line with comp.lang.forth
+\             discussion
+\         0.4 30 November 2009 <TRUE> and <FALSE> replaced with TRUE
+\             and FALSE
+\         0.3 6 March 2009 { and } replaced with T{ and }T
+\         0.2 20 April 2007 ANS Forth words changed to upper case
+\         0.1 Oct 2006 First version released
+
+\ ------------------------------------------------------------------------------
+\ The tests are based on John Hayes test program for the core word set
+\ and requires those files to have been loaded
+
+\ Words tested in this file are:
+\     -TRAILING /STRING BLANK CMOVE CMOVE> COMPARE SEARCH SLITERAL
+\     REPLACES SUBSTITUTE UNESCAPE
+\
+\ ------------------------------------------------------------------------------
+\ Assumptions, dependencies and notes:
+\     - tester.fr (or ttester.fs), errorreport.fth and utilities.fth have been
+\       included prior to this file
+\     - the Core word set is available and tested
+\     - COMPARE is case sensitive
+\ ------------------------------------------------------------------------------
+
+TESTING String word set
+
+DECIMAL
+
+T{ :  S1 S" abcdefghijklmnopqrstuvwxyz" ; -> }T
+T{ :  S2 S" abc"   ; -> }T
+T{ :  S3 S" jklmn" ; -> }T
+T{ :  S4 S" z"     ; -> }T
+T{ :  S5 S" mnoq"  ; -> }T
+T{ :  S6 S" 12345" ; -> }T
+T{ :  S7 S" "      ; -> }T
+T{ :  S8 S" abc  " ; -> }T
+T{ :  S9 S"      " ; -> }T
+T{ : S10 S"    a " ; -> }T
+
+\ ------------------------------------------------------------------------------
+\ TESTING -TRAILING
+\
+\ T{  S1 -TRAILING -> S1 }T
+\ T{  S8 -TRAILING -> S8 2 - }T
+\ T{  S7 -TRAILING -> S7 }T
+\ T{  S9 -TRAILING -> S9 DROP 0 }T
+\ T{ S10 -TRAILING -> S10 1- }T
+
+\ ------------------------------------------------------------------------------
+TESTING /STRING
+
+T{ S1  5 /STRING -> S1 SWAP 5 + SWAP 5 - }T
+T{ S1 10 /STRING -4 /STRING -> S1 6 /STRING }T
+T{ S1  0 /STRING -> S1 }T
+

@@ -1,0 +1,192 @@
+
+\ ------------------------------------------------------------------------
+\  These definitions have a different behaviour in Mecrisp-Ice:
+\ ------------------------------------------------------------------------
+
+:  variable ( -- ) 0 variable ;
+: 2variable ( -- ) 0. 2variable ;
+
+\ ------------------------------------------------------------------------
+\  These CORE definitions are not part of Mecrisp-Ice for default:
+\ ------------------------------------------------------------------------
+
+: word ( c -- c-addr )
+    begin
+        source >r >in @ + c@ over =
+        r> >in @ xor and
+    while
+        1 >in +!
+    repeat
+
+    parse
+    dup BUF0 c!
+    BUF0 1+ swap move
+    BUF0
+;
+
+\ : >number ( ud1 c-addr1 u1 -- ud2 c-addr2 u2 )
+\     begin
+\         dup
+\     while
+\         over c@ digit
+\         0= if drop exit then
+\         >r 2swap base @
+\         tuck * >r um* r> + \ Inlined Swapforth ud* ( ud1 u -- ud2 )
+\         r> s>d d+ 2swap
+\         1 /string
+\     repeat
+\ ;
+
+: chars ( u -- u ) ; 0 foldable
+: char+ ( u -- u+1 ) 1+ ; 1 foldable
+
+: erase ( addr u -- ) 0 fill ;
+
+\ ------------------------------------------------------------------------
+\  These CORE-EXT definitions are not part of Mecrisp-Ice for default:
+\ ------------------------------------------------------------------------
+
+: roll
+    ?dup if
+        swap >r
+        1- recurse
+        r> swap
+    then
+;
+
+: .( ( -- )
+    [char] ) parse type
+; immediate
+
+: pick
+    ?dup if
+        swap >r
+        1- recurse
+        r> swap
+    else
+        dup
+    then
+;
+
+: 2>r ( x1 x2 -- ) ( R: -- x1 x2 )  r> -rot swap >r >r >r ;
+
+: 2r> ( -- x1 x2 ) ( R: x1 x2 -- )
+    postpone r>
+    postpone r>
+    postpone swap
+; immediate
+
+: 2r@ ( -- x1 x2 ) ( R: x1 x2 -- x1 x2 ) r> 2r> 2dup 2>r rot >r ;
+
+\ ------------------------------------------------------------------------
+\  These DOUBLE definitions are not part of Mecrisp-Ice for default:
+\ ------------------------------------------------------------------------
+
+ 0 CONSTANT <FALSE>
+-1 CONSTANT <TRUE>
+
+: 2literal ( d -- )
+    swap postpone literal postpone literal
+; immediate
+
+: d>s ( d -- n ) drop ;
+
+\ From Wil Baden's "FPH Popular Extensions"
+\ http://www.wilbaden.com/neil_bawd/fphpop.txt
+
+: tnegate                           ( t . . -- -t . . )
+    >r  2dup or dup if drop  dnegate 1  then
+    r> +  negate ;
+
+: t*                                ( d . n -- t . . )
+                                    ( d0 d1 n)
+    2dup xor >r                     ( r: sign)
+    >r dabs r> abs
+    2>r                             ( d0)( r: sign d1 n)
+    r@ um* 0                        ( t0 d1 0)
+    2r> um*                         ( t0 d1 0 d1*n .)( r: sign)
+    d+                              ( t0 t1 t2)
+    r> 0< if tnegate then ;
+
+: t/                                ( t . . u -- d . )
+                                    ( t0 t1 t2 u)
+    over >r >r                      ( t0 t1 t2)( r: t2 u)
+    dup 0< if tnegate then
+    r@ um/mod                       ( t0 rem d1)
+    rot rot                         ( d1 t0 rem)
+    r> um/mod                       ( d1 rem' d0)( r: t2)
+    nip swap                        ( d0 d1)
+    r> 0< if dnegate then ;
+
+: m*/  ( d . n u -- d . )  >r t*  r> t/ ;
+
+\ ------------------------------------------------------------------------
+\ For testing of the ansification layer. Slightly changed, some parts are commented out.
+\ See original at https://github.com/gerryjackson/forth2012-test-suite/tree/master
+\ ------------------------------------------------------------------------
+
+\ From: John Hayes S1I
+\ Subject: tester.fr
+\ Date: Mon, 27 Nov 95 13:10:09 PST
+
+\ (C) 1995 JOHNS HOPKINS UNIVERSITY / APPLIED PHYSICS LABORATORY
+\ MAY BE DISTRIBUTED FREELY AS LONG AS THIS COPYRIGHT NOTICE REMAINS.
+\ VERSION 1.2
+
+\ 24/11/2015 Replaced Core Ext word <> with = 0=
+\ 31/3/2015 Variable #ERRORS added and incremented for each error reported.
+\ 22/1/09 The words { and } have been changed to T{ and }T respectively to
+\ agree with the Forth 200X file ttester.fs. This avoids clashes with
+\ locals using { ... } and the FSL use of }
+
+HEX
+
+\ SET THE FOLLOWING FLAG TO TRUE FOR MORE VERBOSE OUTPUT; THIS MAY
+\ ALLOW YOU TO TELL WHICH TEST CAUSED YOUR SYSTEM TO HANG.
+VARIABLE VERBOSE
+   FALSE VERBOSE !
+\   TRUE VERBOSE !
+
+: EMPTY-STACK   \ ( ... -- ) EMPTY STACK: HANDLES UNDERFLOWED STACK TOO.
+   DEPTH ?DUP IF DUP 0< IF NEGATE 0 DO 0 LOOP ELSE 0 DO DROP LOOP THEN THEN ;
+
+VARIABLE #ERRORS 0 #ERRORS !
+
+: ERROR      \ ( C-ADDR U -- ) DISPLAY AN ERROR MESSAGE FOLLOWED BY
+      \ THE LINE THAT HAD THE ERROR.
+   CR TYPE SOURCE TYPE       \ DISPLAY LINE CORRESPONDING TO ERROR
+   EMPTY-STACK               \ THROW AWAY EVERY THING ELSE
+   #ERRORS @ 1 + #ERRORS !
+   QUIT  \ *** Uncomment this line to QUIT on an error
+;
+
+VARIABLE ACTUAL-DEPTH         \ STACK RECORD
+CREATE ACTUAL-RESULTS 20 CELLS ALLOT
+
+: T{      \ ( -- ) SYNTACTIC SUGAR.
+   ;
+
+: ->      \ ( ... -- ) RECORD DEPTH AND CONTENT OF STACK.
+   DEPTH DUP ACTUAL-DEPTH !      \ RECORD DEPTH
+   ?DUP IF            \ IF THERE IS SOMETHING ON STACK
+      0 DO ACTUAL-RESULTS I CELLS + ! LOOP \ SAVE THEM
+   THEN ;
+
+: }T      \ ( ... -- ) COMPARE STACK (EXPECTED) CONTENTS WITH SAVED
+      \ (ACTUAL) CONTENTS.
+   DEPTH ACTUAL-DEPTH @ = IF      \ IF DEPTHS MATCH
+      DEPTH ?DUP IF         \ IF THERE IS SOMETHING ON THE STACK
+         0  DO            \ FOR EACH STACK ITEM
+           ACTUAL-RESULTS I CELLS + @   \ COMPARE ACTUAL WITH EXPECTED
+           = 0= IF S" INCORRECT RESULT: " ERROR LEAVE THEN
+         LOOP
+      THEN
+   ELSE               \ DEPTH MISMATCH
+      S" WRONG NUMBER OF RESULTS: " ERROR
+   THEN ;
+
+: TESTING   \ ( -- ) TALKING COMMENT.
+  SOURCE VERBOSE @
+   IF DUP >R TYPE CR R> >IN !
+   ELSE >IN ! DROP [CHAR] * EMIT
+   THEN ;

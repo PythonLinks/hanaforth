@@ -1,0 +1,18 @@
+
+  cat tester.txt test-core.txt test-core-ext.txt test-core-plus.txt test-double.txt test-strings.txt test-mecrisp-ice-extras.txt > complete-test.txt
+
+echo "-------------------------------------------------------------------------------"
+echo "  Untested Routines:"
+echo "-------------------------------------------------------------------------------"
+
+cat log.txt | grep Unknown | grep -v -e "----" > untested.txt
+
+cat untested.txt
+
+echo "-------------------------------------------------------------------------------"
+echo "  Gefundene Fehler:"
+echo "-------------------------------------------------------------------------------"
+
+cat log.txt | grep INCORRECT
+
+cat log.txt | grep WRONG
