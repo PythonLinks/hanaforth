@@ -12,7 +12,8 @@ echo "  ERRORS FOUND:"
 echo "-------------------------------------------------------------------------------"
 
 cat build/log.txt | grep -B 3 INCORRECT
-
+echo ""
+echo ""
 cat build/log.txt | grep -B 3 WRONG
 
 

@@ -22,24 +22,31 @@ echo "Compile additional Forth sources..."
 cat libforth/coredefinitions.fs  \
     libforth/basisdefinitions.fs \
     libforth/fixpoint.fs         \
-    forth/load.fs > build/included.fs
+    forth/load.fs > build/base.fs
 
 # insight has to be the last file included
 # because it has the new command, which resets
 # memory pointer to the original base. 
 
-cat libforth/insight.fs >> build/included.fs
+cat libforth/insight.fs >> build/base.fs
 
 cd testsuite
 cat tester.txt test-core.txt test-core-ext.txt test-core-plus.txt test-double.txt test-strings.txt > complete-test.txt
-#test-mecrisp-ice-extras.txt
+
 
 cd ..
 
-cat testsuite/complete-test.txt >> build/included.fs
-
 cp build/nucleus.hex build/iceimage.hex
+
+cat build/base.fs testsuite/complete-test.txt >> build/included.fs
 
 echo "Running the tests, this could take 30 seconds on my Mac."
 cat build/included.fs | ./Vj1a > build/log.txt
+
+#These tests are not working.
+#They use a Forth word which does not exist. 
+#echo "Running the Mecrisp Ice tests."
+#cat build/base.fs testsuite/tester.txt testsuite/test-mecrisp-ice-extras.txt > build/included.fs
+
+#cat build/included.fs | ./Vj1a | tee  build/log.txt
 

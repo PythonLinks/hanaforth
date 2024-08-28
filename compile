@@ -22,6 +22,7 @@ echo "Compile additional Forth sources..."
 cat libforth/coredefinitions.fs  \
     libforth/basisdefinitions.fs \
     libforth/fixpoint.fs         \
+    libforth/double.fs           \
     forth/load.fs > build/included.fs
 
 # insight has to be the last file included
