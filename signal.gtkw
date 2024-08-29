@@ -1,0 +1,70 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Sun Aug 11 04:37:39 2024
+[*]
+[dumpfile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/emecrisp-ice-2.6/verilator-16bit-dualport/simulate/out.fst"
+[dumpfile_mtime] "Sun Aug 11 04:31:37 2024"
+[dumpfile_size] 35051983
+[savefile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/emecrisp-ice-2.6/verilator-16bit-dualport/simulate/signal.gtkw"
+[timestart] 0
+[size] 1296 600
+[pos] 140 20
+*-2,000000 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+[markername] AA
+[markername] BB
+[markername] CC
+[markername] DD
+[markername] EE
+[markername] FF
+[markername] GG
+[markername] HH
+[markername] II
+[markername] JJ
+[markername] KK
+[markername] LL
+[markername] MM
+[markername] NN
+[markername] OO
+[markername] PP
+[markername] QQ
+[markername] RR
+[markername] SS
+[markername] TT
+[markername] UU
+[markername] VV
+[markername] WW
+[markername] XX
+[markername] YY
+[markername] ZZ
+[treeopen] TOP.
+[treeopen] TOP.v.
+[treeopen] TOP.v._j1.
+[sst_width] 253
+[signals_width] 193
+[sst_expanded] 1
+[sst_vpaned_height] 159
+@28
+TOP.v._j1.clk
+@22
+TOP.v._j1.pc[15:0]
+TOP.v._j1.code_addr[12:0]
+@23
+TOP.v._j1.address14[13:0]
+@28
+TOP.v._j1.ram.useBRAM
+TOP.v._j1.ram.isMemoryWrite
+@22
+TOP.v._j1.ram.address14[13:0]
+TOP.v._j1.address14[13:0]
+@28
+TOP.v._j1.ram.bram8.chipSelect
+TOP.v._j1.ram.bram.chipSelect
+@22
+TOP.v._j1.ram.address8[7:0]
+TOP.v._j1.ram.bram8.fromMemory[15:0]
+TOP.v._j1.ram.fromBRAM[15:0]
+TOP.v._j1.fromMemory[15:0]
+TOP.v._j1.fromMemoryWire[15:0]
+TOP.v._j1.ram.address8[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

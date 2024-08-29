@@ -1,7 +1,10 @@
 #!/bin/bash
 ./compile
 
+# If out.fst does not exist, do not generate an error message. 
+rm -f -- out.fst
+
 stty -icanon -echo
-./Vj1a
+./Vj1a -halt -trace 
 stty sane
 

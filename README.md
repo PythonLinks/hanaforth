@@ -45,4 +45,15 @@ messages, meaning that everything works fine.
 Compiling is a two stage process.  First gforth is used to compile a nucleus.
 The nucleus is enough to boot the system.  Then the remaining code is loaded
 into the simulator, and exported to build/iceimage.hex.  Then the emulator can be run. 
+When you run the simulator it has two arguments.
 
+-halt will halt on overflow or underflow.  This should be used during development,
+but now when running the test suite.
+
+-trace will run the tracing.   It creates a file signal.fst which can then
+be viewed by typing
+
+gtkwave signal.gtkw
+
+The escape key can be used to leave the simulator, but preserve the
+trace functionality.
