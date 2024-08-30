@@ -39,7 +39,7 @@ case $(uname) in
     cat build/included.fs | ./Hana1.linux > build/log.txt    
     ;;
 (Darwin)
-    echo Compiling the est of the Forth
+    echo Compiling the rest of the Forth
     cat build/included.fs | ./Hana1.macos > build/log.txt
     ;;
 (MSYS_NT-*)

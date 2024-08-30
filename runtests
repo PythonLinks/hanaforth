@@ -13,7 +13,7 @@ echo "Compile nucleus..."
 # use them, then delete them.  Pull requests accepted. 
 cp libforth/cross.fs libforth/instructionset.fs libforth/nucleus.fs libforth/nucleuslib.fs .
 gforth cross.fs instructionset.fs nucleus.fs
-
+cp build/nucleus.hex build/iceimage.hex
 rm cross.fs instructionset.fs nucleus.fs nucleuslib.fs
 
 echo ""
@@ -32,16 +32,31 @@ cat libforth/insight.fs >> build/base.fs
 
 cd testsuite
 cat tester.txt test-core.txt test-core-ext.txt test-core-plus.txt test-double.txt test-strings.txt > complete-test.txt
-
-
 cd ..
-
-cp build/nucleus.hex build/iceimage.hex
 
 cat build/base.fs testsuite/complete-test.txt >> build/included.fs
 
 echo "Running the tests, this could take 30 seconds on my Mac."
-cat build/included.fs | ./Vj1a > build/log.txt
+
+case $(uname) in
+(Linux)
+    cat build/included.fs | ./Hana1.linux > build/log.txt        
+    ;;
+(Darwin)
+    cat build/included.fs | ./Hana1.macos > build/log.txt    
+    ;;
+(MSYS_NT-*)
+    echo The tests do not run on windows. 
+    ;;
+(*BSD)
+    echo The tests do not run on BSD.
+    ;;
+(*)
+    echo The tests do not run on this OS. 
+    ;;
+esac
+
+
 
 #These tests are not working.
 #They use a Forth word which does not exist. 
@@ -49,4 +64,20 @@ cat build/included.fs | ./Vj1a > build/log.txt
 #cat build/base.fs testsuite/tester.txt testsuite/test-mecrisp-ice-extras.txt > build/included.fs
 
 #cat build/included.fs | ./Vj1a | tee  build/log.txt
+
+echo ""
+cat build/log.txt | grep Unknown | grep -v -e "----" > build/untested.txt
+echo ""
+cat build/untested.txt
+
+echo "-------------------------------------------------------------------------------"
+echo "  ERRORS FOUND:"
+echo "-------------------------------------------------------------------------------"
+
+cat build/log.txt | grep -B 3 INCORRECT
+echo ""
+cat build/log.txt | grep  WRONG
+
+#echo "If you only see 2 lines of code above, that is good.  Those are the "
+#echo "original source code lines that print the error message."
 
