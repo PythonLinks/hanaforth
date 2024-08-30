@@ -1,9 +1,5 @@
 # The Hana 1 Soft Core
 
-```diff
-- WARNING THiS VERSION MAY STILL HAVE PROBLEMS.  </font>
-```
-
 This repository contains a verilator-based simulator for the Hana 1
 Forth stack machine soft core. Eventually the gateware for the
 pico-ice will also be hosted here. 
