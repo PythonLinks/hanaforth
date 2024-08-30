@@ -50,3 +50,11 @@ The escape key can be used to leave the simulator, but preserve the
 trace functionality.
 
 Eventually, the pico-ice gateware will also be hosted here.
+
+TODO:
+
+1. There are some Mecrisp tests that use an undefined word. I need to figure out what is going on there.
+2. The Hayes (ANSI) Forth test suite allows, even causes stack overflow and underflow, Hana 1 is stricter. I am not quite sure what to do.
+3. There are some additional compile switches I want to add.
+   -static -static-libgcc -static-libstdc++ LDFLAGs
+4. Get it boot script working on the FPGA. 
