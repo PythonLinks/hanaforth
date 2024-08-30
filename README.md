@@ -57,4 +57,4 @@ TODO:
 2. The Hayes (ANSI) Forth test suite allows, even causes stack overflow and underflow, Hana 1 is stricter. I am not quite sure what to do.
 3. There are some additional compile switches I want to add.
    -static -static-libgcc -static-libstdc++ LDFLAGs
-4. Get it boot script working on the FPGA. 
+4. Get the boot script working on the FPGA. 
