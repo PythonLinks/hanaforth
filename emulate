@@ -5,6 +5,27 @@
 rm -f -- out.fst
 
 stty -icanon -echo
-./Vj1a -halt -trace 
+
+case $(uname) in
+(Linux)
+    echo  Loading Hana1 on Linux will halt on errors, no tracing.     
+    ./Hana1.linux -halt 
+    ;;
+(Darwin)
+    echo  Loading Hana1 on Mac OS will halt on errors, no tracing. 
+    ./Hana1.macos -halt      
+    ;;
+(MSYS_NT-*)
+    echo Hana1 does not run on Windows. Ask if you really need it to run here. 
+    ;;
+(*BSD)
+    echo Hana1 does not run on BSD.
+    ;;
+(*)
+    echo Hana1 does not run on this operating system.     
+    ;;
+esac
+
+
 stty sane
 

@@ -32,7 +32,27 @@ cat libforth/coredefinitions.fs  \
 cat libforth/insight.fs >> build/included.fs
 
 cp build/nucleus.hex build/iceimage.hex
-cat build/included.fs | ./Vj1a > build/log.txt
+
+case $(uname) in
+(Linux)
+    echo Compiling the rest of the Forth
+    cat build/included.fs | ./Hana1.linux > build/log.txt    
+    ;;
+(Darwin)
+    echo Compiling the est of the Forth
+    cat build/included.fs | ./Hana1.macos > build/log.txt
+    ;;
+(MSYS_NT-*)
+    echo Hana1 does not run on Windows. Ask if you really need it to run here. 
+    ;;
+(*BSD)
+    echo Hana1 does not run on BSD.
+    ;;
+(*)
+    echo Hana1 does not run on this operating system. 
+    ;;
+esac
+
 mv coredump.hex build/iceimage.hex
 
 echo "Creating Flash"
