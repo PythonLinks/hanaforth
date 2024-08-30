@@ -13,7 +13,6 @@ echo "Compile nucleus..."
 # use them, then delete them.  Pull requests accepted. 
 cp libforth/cross.fs libforth/instructionset.fs libforth/nucleus.fs libforth/nucleuslib.fs .
 gforth cross.fs instructionset.fs nucleus.fs
-
 rm cross.fs instructionset.fs nucleus.fs nucleuslib.fs
 
 echo ""
@@ -29,7 +28,14 @@ cat libforth/coredefinitions.fs  \
 # because it has the new command, which resets
 # memory pointer to the original base. 
 
-cat libforth/insight.fs >> build/included.fs
+#    \ forth/debug.fs      \
+cat libforth/insight.fs \
+    forth/debug.fs      \
+    forth/forward.fs    \
+    forth/load.fs       \
+    forth/boot.fs       \
+    >> build/included.fs
+
 
 cp build/nucleus.hex build/iceimage.hex
 
