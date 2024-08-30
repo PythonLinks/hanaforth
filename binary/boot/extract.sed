@@ -1,0 +1,1 @@
+sed -n '7937,8192p' ../../build/iceimage.hex > boot.hex
