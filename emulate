@@ -6,26 +6,18 @@ rm -f -- out.fst
 
 stty -icanon -echo
 
-case $(uname) in
-(Linux)
-    echo  Loading Hana1 on Linux will halt on errors, no tracing.     
-    ./Hana1.linux -halt 
-    ;;
-(Darwin)
+osStr=$(uname)
+cpuStr=$(uname -m)
+if [[ "$osStr" == 'Darwin' ]] && [[ "$cpuStr" = 'arm64' ]] ; then
     echo  Loading Hana1 on Mac OS will halt on errors, no tracing. 
     ./Hana1.macos -halt      
-    ;;
-(MSYS_NT-*)
-    echo Hana1 does not run on Windows. Ask if you really need it to run here. 
-    ;;
-(*BSD)
-    echo Hana1 does not run on BSD.
-    ;;
-(*)
-    echo Hana1 does not run on this operating system.     
-    ;;
-esac
 
+elif [[ "$osStr" == 'Linux' ]] && [[ "$cpuStr" = 'x86' ]] ; then
+    echo  Loading Hana1 on Linux will halt on errors, no tracing.     
+    ./Hana1.linux -halt     
+else
+  echo "Only Mac OS on Apple hardware, and Linux on x86 are supported"
+fi
 
 stty sane
 

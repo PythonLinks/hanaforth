@@ -39,25 +39,18 @@ cat libforth/insight.fs \
 
 cp build/nucleus.hex build/iceimage.hex
 
-case $(uname) in
-(Linux)
-    echo Compiling the rest of the Forth
-    cat build/included.fs | ./Hana1.linux > build/log.txt    
-    ;;
-(Darwin)
+
+osStr=$(uname)
+cpuStr=$(uname -m)
+if [[ "$osStr" == 'Darwin' ]] && [[ "$cpuStr" = 'arm64' ]] ; then
     echo Compiling the rest of the Forth
     cat build/included.fs | ./Hana1.macos > build/log.txt
-    ;;
-(MSYS_NT-*)
-    echo Hana1 does not run on Windows. Ask if you really need it to run here. 
-    ;;
-(*BSD)
-    echo Hana1 does not run on BSD.
-    ;;
-(*)
-    echo Hana1 does not run on this operating system. 
-    ;;
-esac
+elif [[ "$osStr" == 'Linux' ]] && [[ "$cpuStr" = 'x86' ]] ; then
+    echo Compiling the rest of the Forth
+    cat build/included.fs | ./Hana1.linux > build/log.txt        
+else
+  echo "Only Mac OS on Apple hardware, and Linux on x86 are supported"
+fi
 
 mv coredump.hex build/iceimage.hex
 
