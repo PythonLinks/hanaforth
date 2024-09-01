@@ -27,14 +27,11 @@ cat libforth/coredefinitions.fs  \
 # insight has to be the last file included
 # because it has the new command, which resets
 # memory pointer to the original base. 
+cat libforth/insight.fs >> build/included.fs
 
-#    \ forth/debug.fs      \
-cat libforth/insight.fs \
-    forth/debug.fs      \
-    forth/forward.fs    \
-    forth/load.fs       \
-    forth/boot.fs       \
-    >> build/included.fs
+#This line is for building the boot script.  You should ignore it. 
+#cat libforth/insight.fs forth/debug.fs forth/forward.fs forth/load.fs forth/boot.fs  >> build/included.fs
+
 
 
 cp build/nucleus.hex build/iceimage.hex

@@ -7,7 +7,6 @@ bytes.  Program addresses can go up to 8K, data has access to the
 remaining memory.  Program addresses are based on a 13 bit word
 address, data access is based on a 14 bit byte address. 
 
-
 Hana 1 is the newest member of the J1 family.  Compared to the popular
 J1a, the Hana 1 has twice the memory, much larger stacks, more
 hardware instructions, SPI access, a better bus, code folding, and a
@@ -70,6 +69,8 @@ development, but now when running the test suite.
 be viewed by typing
 
 gtkwave signal.gtkw
+
+![A GTKWave display showing the values used by the Forth Interpreter.](./ForthSignals.png "Forth Signals")
 
 Inside gtkwave, the following signals are available.
 ::
