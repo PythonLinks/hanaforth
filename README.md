@@ -82,7 +82,15 @@ Inside gtkwave, the following signals are available.
     rspI     delta for the return stack pointer. 
     jumpAddress  for calls, jumps and conditional jumps. 
 
+In GTKWave you can control how they are displayed.
+In the second column, select the signal, right click on
 
+Data Format->Translation Filter File -> Enable and Connect
+Then add filter to list.  Click into
+gtkwave-filters, and select the filter you want to use.
+There are currently filters for instruction type and alu opcode.
+Sadly you have to select these files yourself, gtkwave uses the full path name
+to the file, which will be different from the one on my computer.
 
 TODO:
 

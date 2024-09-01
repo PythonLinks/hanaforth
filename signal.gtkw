@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
-[*] Sun Aug 11 04:37:39 2024
+[*] Sun Sep  1 06:41:08 2024
 [*]
-[dumpfile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/emecrisp-ice-2.6/verilator-16bit-dualport/simulate/out.fst"
-[dumpfile_mtime] "Sun Aug 11 04:31:37 2024"
-[dumpfile_size] 35051983
-[savefile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/emecrisp-ice-2.6/verilator-16bit-dualport/simulate/signal.gtkw"
-[timestart] 0
+[dumpfile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/out.fst"
+[dumpfile_mtime] "Sun Sep  1 06:27:57 2024"
+[dumpfile_size] 7438471
+[savefile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/signal.gtkw"
+[timestart] 64
 [size] 1296 600
 [pos] 140 20
-*-2,000000 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+*-2,000000 72 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 [markername] AA
 [markername] BB
 [markername] CC
@@ -44,27 +44,19 @@
 [sst_expanded] 1
 [sst_vpaned_height] 159
 @28
-TOP.v._j1.clk
+TOP.v._j1.clock
+TOP.v._j1.insnType[2:0]
 @22
-TOP.v._j1.pc[15:0]
-TOP.v._j1.code_addr[12:0]
-@23
-TOP.v._j1.address14[13:0]
+TOP.v._j1.literal[14:0]
+TOP.v._j1.jumpAddress[12:0]
+TOP.v._j1.opCode[4:0]
 @28
-TOP.v._j1.ram.useBRAM
 TOP.v._j1.ram.isMemoryWrite
-@22
-TOP.v._j1.ram.address14[13:0]
-TOP.v._j1.address14[13:0]
-@28
-TOP.v._j1.ram.bram8.chipSelect
-TOP.v._j1.ram.bram.chipSelect
-@22
-TOP.v._j1.ram.address8[7:0]
-TOP.v._j1.ram.bram8.fromMemory[15:0]
-TOP.v._j1.ram.fromBRAM[15:0]
-TOP.v._j1.fromMemory[15:0]
-TOP.v._j1.fromMemoryWire[15:0]
-TOP.v._j1.ram.address8[7:0]
+TOP.v._j1.Return
+TOP.v._j1.func_ior
+TOP.v._j1.func_iow
+TOP.v._j1.func_write
+@23
+TOP.v._j1.pc[15:0]
 [pattern_trace] 1
 [pattern_trace] 0
