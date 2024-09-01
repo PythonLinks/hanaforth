@@ -30,23 +30,38 @@ another month, I am not allowed to post it here.
 The Hana 1 was built by modifying the dual port Mecrisp Ice Verilog
 and Forth.  Mecrisp Ice is built on top of SwapForth.
 
-To compile the forth run
-
-./compile
-
-to run the emulator then type
+To run the emulator then type
 
 ./emulate
 
+It will then call
+
+./compile
+
+To compile the code.  In later releases, when you are building the bitstream,
+you will call the not yet existing command
+
+./flash
+
+Which will then call
+
+./compile
+
+
+The escape key can be used to leave the simulator, but preserve the
+trace functionality.
+
 To run the tests type 
 
-./runtests 
+./runtests
 
-Compiling is a two stage process.  First gforth is used to compile a
+The interface on runtests needs to be improved. 
+
+Compiling is a three stage process.  First gforth is used to compile a
 nucleus.  The nucleus is enough to boot the system.  Then the
-remaining code is loaded into the simulator, and exported to
-build/iceimage.hex.  Then the emulator can be run.  When you run the
-simulator it has two arguments.
+remaining code is loaded into the simple simulator, and exported to
+build/iceimage.hex. The data is copied to the flash image. Then the
+flash simulator can be run.  When you run the simulator it has two arguments.
 
 -halt will halt on overflow or underflow.  This should be used during
 development, but now when running the test suite.
@@ -56,10 +71,18 @@ be viewed by typing
 
 gtkwave signal.gtkw
 
-The escape key can be used to leave the simulator, but preserve the
-trace functionality.
+Inside gtkwave, the following signals are available.
+::
 
-Eventually, the pico-ice gateware will also be hosted here.
+    instructionType see James Bowman's paper for the values. 
+    literal  For 16 bit literals, it is the inverse of the value. 
+    opCode   see instructionset.fs for values. 
+    return   from call.
+    dspI     delta for the stack pointer. 
+    rspI     delta for the return stack pointer. 
+    jumpAddress  for calls, jumps and conditional jumps. 
+
+
 
 TODO:
 
@@ -67,4 +90,4 @@ TODO:
 2. The Hayes (ANSI) Forth test suite allows, even causes stack overflow and underflow, Hana 1 is stricter. I am not quite sure what to do.
 3. There are some additional compile switches I want to add.
    -static -static-libgcc -static-libstdc++ LDFLAGs
-4. Get it boot script working on the FPGA. 
+4. Get the boot script working on the FPGA.  Eventually, the pico-ice gateware will also be hosted here. 

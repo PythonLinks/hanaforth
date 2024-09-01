@@ -56,10 +56,10 @@ mv coredump.hex build/iceimage.hex
 
 echo "Creating Flash"
 #This converts the program into a version to be stored in Flash. 
-#cd binary/flash
-#rm flash.hex
-#python3 flash.py
-#cd ../..
+cd binary/flash
+rm flash.hex
+python3 flash.py
+cd ../..
 
 #Just to make sure that the code is being compiled.
 echo "The following two values should be different." 
