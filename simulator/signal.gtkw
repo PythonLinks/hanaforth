@@ -1,0 +1,62 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Sun Sep  1 06:41:08 2024
+[*]
+[dumpfile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/out.fst"
+[dumpfile_mtime] "Sun Sep  1 06:27:57 2024"
+[dumpfile_size] 7438471
+[savefile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/signal.gtkw"
+[timestart] 64
+[size] 1296 600
+[pos] 140 20
+*-2,000000 72 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+[markername] AA
+[markername] BB
+[markername] CC
+[markername] DD
+[markername] EE
+[markername] FF
+[markername] GG
+[markername] HH
+[markername] II
+[markername] JJ
+[markername] KK
+[markername] LL
+[markername] MM
+[markername] NN
+[markername] OO
+[markername] PP
+[markername] QQ
+[markername] RR
+[markername] SS
+[markername] TT
+[markername] UU
+[markername] VV
+[markername] WW
+[markername] XX
+[markername] YY
+[markername] ZZ
+[treeopen] TOP.
+[treeopen] TOP.v.
+[treeopen] TOP.v._j1.
+[sst_width] 253
+[signals_width] 193
+[sst_expanded] 1
+[sst_vpaned_height] 159
+@28
+TOP.v._j1.clock
+TOP.v._j1.insnType[2:0]
+@22
+TOP.v._j1.literal[14:0]
+TOP.v._j1.jumpAddress[12:0]
+TOP.v._j1.opCode[4:0]
+@28
+TOP.v._j1.ram.isMemoryWrite
+TOP.v._j1.Return
+TOP.v._j1.func_ior
+TOP.v._j1.func_iow
+TOP.v._j1.func_write
+@23
+TOP.v._j1.pc[15:0]
+[pattern_trace] 1
+[pattern_trace] 0

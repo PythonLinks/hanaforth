@@ -1,0 +1,8 @@
+000 Jump
+001 Jump?
+010 Call
+011 ALU
+100 literal
+101 literal
+110 literal
+111 literal

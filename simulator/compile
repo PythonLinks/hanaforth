@@ -13,7 +13,6 @@ echo "Compile nucleus..."
 # use them, then delete them.  Pull requests accepted. 
 cp libforth/cross.fs libforth/instructionset.fs libforth/nucleus.fs libforth/nucleuslib.fs .
 gforth cross.fs instructionset.fs nucleus.fs
-
 rm cross.fs instructionset.fs nucleus.fs nucleuslib.fs
 
 echo ""
@@ -28,30 +27,27 @@ cat libforth/coredefinitions.fs  \
 # insight has to be the last file included
 # because it has the new command, which resets
 # memory pointer to the original base. 
-
 cat libforth/insight.fs >> build/included.fs
+
+#This line is for building the boot script.  You should ignore it. 
+#cat libforth/insight.fs forth/debug.fs forth/forward.fs forth/load.fs forth/boot.fs  >> build/included.fs
+
+
 
 cp build/nucleus.hex build/iceimage.hex
 
-case $(uname) in
-(Linux)
-    echo Compiling the rest of the Forth
-    cat build/included.fs | ./Hana1.linux > build/log.txt    
-    ;;
-(Darwin)
+
+osStr=$(uname)
+cpuStr=$(uname -m)
+if [[ "$osStr" == 'Darwin' ]] && [[ "$cpuStr" = 'arm64' ]] ; then
     echo Compiling the rest of the Forth
     cat build/included.fs | ./Hana1.macos > build/log.txt
-    ;;
-(MSYS_NT-*)
-    echo Hana1 does not run on Windows. Ask if you really need it to run here. 
-    ;;
-(*BSD)
-    echo Hana1 does not run on BSD.
-    ;;
-(*)
-    echo Hana1 does not run on this operating system. 
-    ;;
-esac
+elif [[ "$osStr" == 'Linux' ]] && [[ "$cpuStr" = 'x86' ]] ; then
+    echo Compiling the rest of the Forth
+    cat build/included.fs | ./Hana1.linux > build/log.txt        
+else
+  echo "Only Mac OS on Apple hardware, and Linux on x86 are supported"
+fi
 
 mv coredump.hex build/iceimage.hex
 

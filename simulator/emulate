@@ -1,0 +1,27 @@
+#!/bin/bash
+./compile
+
+# If out.fst does not exist, do not generate an error message. 
+rm -f -- out.fst
+
+stty -icanon -echo
+
+osStr=$(uname)
+cpuStr=$(uname -m)
+if [[ "$osStr" == 'Darwin' ]] && [[ "$cpuStr" = 'arm64' ]] ; then
+    echo  Loading Hana1 on Mac OS will halt on errors, no tracing. 
+    ./Hana1.bootloader.macos -halt $1
+
+elif [[ "$osStr" == 'Linux' ]] && [[ "$cpuStr" = 'x86' ]] ; then
+    echo  Loading Hana1 on Linux will halt on errors, no tracing.     
+    ./Hana1.bootloader.linux -halt  $1   
+else
+  echo "Only Mac OS on Apple hardware, and Linux on x86 are supported"
+fi
+
+stty sane
+
+if [ "$1" = "-trace" ]; then
+   gtkwave signal.gtkw
+fi
+

@@ -38,25 +38,15 @@ cat build/base.fs testsuite/complete-test.txt >> build/included.fs
 
 echo "Running the tests, this could take 30 seconds on my Mac."
 
-case $(uname) in
-(Linux)
-    cat build/included.fs | ./Hana1.linux > build/log.txt        
-    ;;
-(Darwin)
+osStr=$(uname)
+cpuStr=$(uname -m)
+if [[ "$osStr" == 'Darwin' ]] && [[ "$cpuStr" = 'arm64' ]] ; then
     cat build/included.fs | ./Hana1.macos > build/log.txt    
-    ;;
-(MSYS_NT-*)
-    echo The tests do not run on windows. 
-    ;;
-(*BSD)
-    echo The tests do not run on BSD.
-    ;;
-(*)
-    echo The tests do not run on this OS. 
-    ;;
-esac
-
-
+elif [[ "$osStr" == 'Linux' ]] && [[ "$cpuStr" = 'x86' ]] ; then
+    cat build/included.fs | ./Hana1.linux > build/log.txt        
+else
+  echo "Only Mac OS on Apple hardware, and Linux on x86 are supported"
+fi
 
 #These tests are not working.
 #They use a Forth word which does not exist. 
