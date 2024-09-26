@@ -6,13 +6,14 @@ This is the Mecrisp Ice version of a pseudo dual port J1a.   This is a bitstream
 
 To flash the gateware type:
 
-::
+```
 
    Mac OS 
    dfu-util -a 1 -D j1a.bin
 
    On Linux you will need sudo.
    sudo dfu-util -a 1 -D j1a.bin
+```
 
 It is recommended that you use the [e4thcom terminal emulator](https://mecrisp-ice.readthedocs.io/en/latest/e4thcom.htm)
 
