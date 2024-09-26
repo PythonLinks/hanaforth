@@ -12,7 +12,7 @@ if [[ "$osStr" == 'Darwin' ]] && [[ "$cpuStr" = 'arm64' ]] ; then
     echo  Loading Hana1 on Mac OS will halt on errors, no tracing. 
     ./Hana1.bootloader.macos -halt $1
 
-elif [[ "$osStr" == 'Linux' ]] && [[ "$cpuStr" = 'x86' ]] ; then
+elif [[ "$osStr" == 'Linux' ]] && [[ "$cpuStr" = 'x86_64' ]] ; then
     echo  Loading Hana1 on Linux will halt on errors, no tracing.     
     ./Hana1.bootloader.linux -halt  $1   
 else
