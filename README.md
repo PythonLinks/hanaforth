@@ -33,8 +33,15 @@ and Forth.  Mecrisp Ice is built on top of SwapForth.
 TODO:
 
 1. Get the boot script working on the FPGA.  Eventually, the pico-ice gateware will also be hosted here.
+
 2. There are some Mecrisp tests that use an undefined word. I need to figure out what is going on there.
+
 3. The Hayes (ANSI) Forth test suite allows, even causes stack overflow and underflow, Hana 1 is stricter. I am not quite sure what to do.
+
 4. There are some additional compile switches I want to add.
    -static -static-libgcc -static-libstdc++ LDFLAGs
+
 5. Add a beautiful makefile like [this one](https://github.com/XarkLabs/upduino-example/blob/master/Makefile#L147-L153).
+
+6. Get the boot script working on the FPGA. 
+
