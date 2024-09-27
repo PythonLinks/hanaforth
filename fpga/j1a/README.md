@@ -15,7 +15,7 @@ To flash the gateware type:
    sudo dfu-util -a 1 -D j1a.bin
 ```
 
-It is recommended that you use the [e4thcom terminal emulator](https://mecrisp-ice.readthedocs.io/en/latest/e4thcom.htm)
+It is recommended that you use the [e4thcom terminal emulator](https://mecrisp-ice.readthedocs.io/en/latest/e4thcom.html)
 
 To build it yourself, first [download Mecrisp Ice
 2.6d](https://sourceforge.net/projects/mecrisp/files/).  The newer
