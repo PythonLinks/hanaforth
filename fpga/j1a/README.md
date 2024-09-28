@@ -28,8 +28,9 @@ On Linux you will need sudo.
 When you first start out, it is easiest to use the picocom
 terminal emulator.
 
+```
 sudo picocom --baud 115200 --imap crcrlf,lfcrlf /dev/ttyACM1
-
+```
 If you are doing a lot of work, it is recommended that you use the
 [e4thcom terminal
 emulator](https://mecrisp-ice.readthedocs.io/en/latest/e4thcom.html)
