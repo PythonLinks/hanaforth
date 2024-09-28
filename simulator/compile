@@ -42,7 +42,7 @@ cpuStr=$(uname -m)
 if [[ "$osStr" == 'Darwin' ]] && [[ "$cpuStr" = 'arm64' ]] ; then
     echo Compiling the rest of the Forth
     cat build/included.fs | ./Hana1.macos > build/log.txt
-elif [[ "$osStr" == 'Linux' ]] && [[ "$cpuStr" = 'x86' ]] ; then
+elif [[ "$osStr" == 'Linux' ]] && [[ "$cpuStr" = 'x86_64' ]] ; then
     echo Compiling the rest of the Forth
     cat build/included.fs | ./Hana1.linux > build/log.txt        
 else
