@@ -10,9 +10,9 @@ the Hana 1 has twice the memory, much larger stacks (256 vs 16 words),
 [more hardware
 instructions](https://mecrisp-ice.readthedocs.io/en/latest/instruction-set.html),
 SPI access, a better bus, code folding, and a richer library, but
-requires 119 fewer LUTs, The J1a is larger because it requires a
-multiplexer to connect together 30 x 4Kbit block RAMs (BRAMs) into a
-single 8K word memory module.  The Hana 1 is smaller because it uses a
+requires 119 fewer LUTs, The J1a is larger because it implements the stacks in BRAMs. and requires a
+multiplexer to connect together 32 x 4Kbit block RAMs (BRAMs) into a
+single 8K word memory module.  The Hana 1 is smaller because it implements the data and return stack in 2 BRAMs, and uses a
 16K word hardcore single port RAM (SPRAM) to provide the bulk of the
 memory. The J1a cannot use the larger SPRAMs available on the more
 modern ICE40-UP FPGAs because the SPRAMs cannot be initialized in the
