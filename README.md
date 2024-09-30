@@ -2,7 +2,7 @@
 
 This repository contans a [simulator for the Hana 1](./simulator), 
 soft core stack machine running a small interpreter and compiler
-in both simulation and on the FPGA. 
+in simulation. 
 
 Hana 1 is the newest member of the J1 family of stack processors. Hana
 1 provides 16K 16 bit words of memory.  Compared to the popular J1a,
