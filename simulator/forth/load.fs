@@ -1,6 +1,7 @@
 : load
-\ Because the chipselect register may not be zeroed
-cs-
+spiStart
+nop
+
 \ 30 hex read instruction transposed
 
 spi! \ spi! sets cs+
@@ -18,9 +19,9 @@ spi@ nop nop nop
 nop nop nop nop
 nop nop nop nop
 nop nop nop nop
-nop
 spi@
-cs-
+spiEnd
+nop
 ;
 
 

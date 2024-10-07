@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
-[*] Sun Sep  1 06:41:08 2024
+[*] Sun Oct  6 16:46:54 2024
 [*]
-[dumpfile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/out.fst"
-[dumpfile_mtime] "Sun Sep  1 06:27:57 2024"
-[dumpfile_size] 7438471
-[savefile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/signal.gtkw"
-[timestart] 64
+[dumpfile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/simulator/out.fst"
+[dumpfile_mtime] "Sun Oct  6 16:46:45 2024"
+[dumpfile_size] 1275456
+[savefile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/simulator/signal.gtkw"
+[timestart] 66544
 [size] 1296 600
-[pos] 140 20
-*-2,000000 72 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+[pos] 24 20
+*-2,000000 66552 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 [markername] AA
 [markername] BB
 [markername] CC
@@ -44,19 +44,35 @@
 [sst_expanded] 1
 [sst_vpaned_height] 159
 @28
-TOP.v._j1.clock
 TOP.v._j1.insnType[2:0]
 @22
 TOP.v._j1.literal[14:0]
-TOP.v._j1.jumpAddress[12:0]
 TOP.v._j1.opCode[4:0]
 @28
-TOP.v._j1.ram.isMemoryWrite
-TOP.v._j1.Return
-TOP.v._j1.func_ior
-TOP.v._j1.func_iow
-TOP.v._j1.func_write
-@23
-TOP.v._j1.pc[15:0]
+TOP.v._j1.spiStart
+TOP.v._j1.spiWrite
+TOP.v._j1.spiRead
+TOP.v.Flash.nChipSelect
+@22
+TOP.v.aShifter.MOSI[15:0]
+@28
+TOP.v._j1.clock
+@2028
+^1 /Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/simulator/gtkwave-filters/alu.filter
+TOP.v._j1.opCode[4:0]
+@28
+TOP.v.aShifter.spiEnable
+@29
+TOP.v.aShifter.nChipSelect
+@28
+TOP.v._j1.eint
+@22
+TOP.v.aShifter.shifter[15:0]
+@28
+TOP.v.Flash.IO0
+TOP.v.Flash.IO1
+@2028
+^2 /Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/simulator/gtkwave-filters/spistate.filter
+TOP.v.aShifter.state[2:0]
 [pattern_trace] 1
 [pattern_trace] 0

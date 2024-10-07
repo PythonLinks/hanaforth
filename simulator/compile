@@ -6,6 +6,10 @@ set -euo pipefail
 echo "Tidy up..."
 rm -f build/*
 
+#-------------------------------------------------------------------
+#FIRST WE USE GFORTH TO COMPILE THE NUCLEUS
+#-------------------------------------------------------------------
+
 echo "Compile nucleus..."
 # I tried using gforth to access the forth files from the libforth directory
 # that would be cleaner, but it just would not work.
@@ -15,6 +19,20 @@ cp libforth/cross.fs libforth/instructionset.fs libforth/nucleus.fs libforth/nuc
 gforth cross.fs instructionset.fs nucleus.fs
 rm cross.fs instructionset.fs nucleus.fs nucleuslib.fs
 
+cp build/nucleus.hex build/iceimage.hex
+
+
+echo "Creating Flash"
+#This converts the program into a version to be stored in Flash. 
+cd binary/flash
+rm flash.hex
+python3 flash.py
+cd ../..
+
+
+#-------------------------------------------------------------------
+#AND NOW USE THE VERILATOR SIMULATOR TO COMPILE THE REST OF THE CODE
+#-------------------------------------------------------------------
 echo ""
 echo "Compile additional Forth sources..."
 
@@ -33,18 +51,14 @@ cat libforth/insight.fs >> build/included.fs
 #cat libforth/insight.fs forth/debug.fs forth/forward.fs forth/load.fs forth/boot.fs  >> build/included.fs
 
 
-
-cp build/nucleus.hex build/iceimage.hex
-
-
 osStr=$(uname)
 cpuStr=$(uname -m)
 if [[ "$osStr" == 'Darwin' ]] && [[ "$cpuStr" = 'arm64' ]] ; then
     echo Compiling the rest of the Forth
-    cat build/included.fs | ./Hana1.macos > build/log.txt
+    cat build/included.fs | ./Hana1.bootloader.macos > build/log.txt
 elif [[ "$osStr" == 'Linux' ]] && [[ "$cpuStr" = 'x86_64' ]] ; then
     echo Compiling the rest of the Forth
-    cat build/included.fs | ./Hana1.linux > build/log.txt        
+    cat build/included.fs | ./Hana1.bootloader.linux > build/log.txt        
 else
   echo "Only Mac OS on Apple hardware, and Linux on x86 are supported"
 fi
