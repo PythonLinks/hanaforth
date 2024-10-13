@@ -10,7 +10,7 @@ decimal
 
      \ 2dup
      \ show
-     !! drop
+      !! drop
          
     2      \ (addr 2)
     +      \ (addr+2)
@@ -18,7 +18,7 @@ decimal
     16383   \ (addr+2 addr+2  number) Loops
     <      \ (addr+2 Bool) N < T
     if     \ (addr+2)
-    15994   \  Jump address
+    15998   \  Jump address hex 3E7E
     >r	
     exit   \ (addr+2) ITERATE
     then   \

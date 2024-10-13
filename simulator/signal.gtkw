@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
-[*] Sun Oct  6 16:46:54 2024
+[*] Thu Oct 10 11:33:41 2024
 [*]
 [dumpfile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/simulator/out.fst"
-[dumpfile_mtime] "Sun Oct  6 16:46:45 2024"
-[dumpfile_size] 1275456
+[dumpfile_mtime] "Thu Oct 10 11:31:46 2024"
+[dumpfile_size] 3437356
 [savefile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/simulator/signal.gtkw"
-[timestart] 66544
+[timestart] 67438
 [size] 1296 600
 [pos] 24 20
-*-2,000000 66552 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+*-2,000000 67446 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 [markername] AA
 [markername] BB
 [markername] CC
@@ -47,8 +47,8 @@
 TOP.v._j1.insnType[2:0]
 @22
 TOP.v._j1.literal[14:0]
-TOP.v._j1.opCode[4:0]
 @28
+TOP.clock
 TOP.v._j1.spiStart
 TOP.v._j1.spiWrite
 TOP.v._j1.spiRead
@@ -62,9 +62,7 @@ TOP.v._j1.clock
 TOP.v._j1.opCode[4:0]
 @28
 TOP.v.aShifter.spiEnable
-@29
 TOP.v.aShifter.nChipSelect
-@28
 TOP.v._j1.eint
 @22
 TOP.v.aShifter.shifter[15:0]

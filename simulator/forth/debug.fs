@@ -1,3 +1,3 @@
 
-: show decimal dup . @ hex  . . cr ;
+: show decimal dup . @ hex  .x .x cr ;
 
