@@ -8,14 +8,15 @@ decimal
     load   \ (addr addr  valueF1) Shift out and in
     swap   \ (addr valueFl addr)
 
-     \ 2dup
-      show nop
-     \ !! drop
+      \ 2dup
+      \ show nop
+       !! drop
          
     2      \ (addr 2)
     +      \ (addr+2)
     dup    \ (addr+2 addr+2)
-    16383   \ (addr+2 addr+2  number) Loops
+    16384   \ (addr+2 addr+2  number) Loops
+    \3675
     <      \ (addr+2 Bool) N < T
     if     \ (addr+2)
     15998   \  Jump address hex 3E7E
@@ -25,7 +26,9 @@ decimal
     drop   \ () clear the stack
     ;
 
-    : boot 0 loader
+    : boot
+    \ 3673 loader
+    0 loader 	
     0      \ (0) set the boot address
     >r     \ () Put it on the return stack
     ;
