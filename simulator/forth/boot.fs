@@ -16,7 +16,6 @@ decimal
     +      \ (addr+2)
     dup    \ (addr+2 addr+2)
     16384   \ (addr+2 addr+2  number) Loops
-    \3675
     <      \ (addr+2 Bool) N < T
     if     \ (addr+2)
     15998   \  Jump address hex 3E7E
@@ -27,7 +26,6 @@ decimal
     ;
 
     : boot
-    \ 3673 loader
     0 loader 	
     0      \ (0) set the boot address
     >r     \ () Put it on the return stack
