@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
-[*] Thu Oct 10 11:33:41 2024
+[*] Mon Oct 14 18:07:09 2024
 [*]
 [dumpfile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/simulator/out.fst"
-[dumpfile_mtime] "Thu Oct 10 11:31:46 2024"
-[dumpfile_size] 3437356
+[dumpfile_mtime] "Mon Oct 14 18:05:04 2024"
+[dumpfile_size] 142373
 [savefile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/simulator/signal.gtkw"
-[timestart] 67438
+[timestart] 12313
 [size] 1296 600
 [pos] 24 20
-*-2,000000 67446 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+*-1,000000 12317 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 [markername] AA
 [markername] BB
 [markername] CC
@@ -39,6 +39,7 @@
 [treeopen] TOP.
 [treeopen] TOP.v.
 [treeopen] TOP.v._j1.
+[treeopen] TOP.v._j1.ram.
 [sst_width] 253
 [signals_width] 193
 [sst_expanded] 1
@@ -69,8 +70,10 @@ TOP.v.aShifter.shifter[15:0]
 @28
 TOP.v.Flash.IO0
 TOP.v.Flash.IO1
-@2028
-^2 /Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/simulator/gtkwave-filters/spistate.filter
-TOP.v.aShifter.state[2:0]
+TOP.v._j1.ram.flag
+@24
+TOP.v._j1.ram.address[13:0]
+@23
+TOP.v._j1.ram.fromMemory[15:0]
 [pattern_trace] 1
 [pattern_trace] 0

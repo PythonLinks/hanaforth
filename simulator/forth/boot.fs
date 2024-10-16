@@ -9,8 +9,8 @@ decimal
     swap   \ (addr valueFl addr)
 
      \ 2dup
-     \ show
-      !! drop
+      show nop
+     \ !! drop
          
     2      \ (addr 2)
     +      \ (addr+2)

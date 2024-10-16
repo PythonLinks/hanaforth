@@ -21,14 +21,12 @@ rm cross.fs instructionset.fs nucleus.fs nucleuslib.fs
 
 cp build/nucleus.hex build/iceimage.hex
 
-
-echo "Creating Flash"
+#echo "Creating Flash"
 #This converts the program into a version to be stored in Flash. 
-cd binary/flash
-rm flash.hex
-python3 flash.py
-cd ../..
-
+#cd binary/flash
+#rm flash.hex
+#python3 flash.py
+#cd ../..
 
 #-------------------------------------------------------------------
 #AND NOW USE THE VERILATOR SIMULATOR TO COMPILE THE REST OF THE CODE
@@ -49,7 +47,6 @@ cat libforth/insight.fs >> build/included.fs
 
 #This line is for building the boot script.  You should ignore it. 
 cat forth/debug.fs forth/forward.fs forth/load.fs forth/boot.fs  >> build/included.fs
-
 
 osStr=$(uname)
 cpuStr=$(uname -m)
