@@ -46,7 +46,7 @@ cat libforth/coredefinitions.fs  \
 cat libforth/insight.fs >> build/included.fs
 
 #This line is for building the boot script.  You should ignore it. 
-cat forth/debug.fs forth/forward.fs forth/load.fs forth/boot.fs  >> build/included.fs
+cat  forth/forward.fs forth/start.fs forth/process.fs  >> build/included.fs
 
 osStr=$(uname)
 cpuStr=$(uname -m)

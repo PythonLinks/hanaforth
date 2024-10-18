@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
-[*] Mon Oct 14 18:07:09 2024
+[*] Fri Oct 18 15:28:07 2024
 [*]
 [dumpfile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/simulator/out.fst"
-[dumpfile_mtime] "Mon Oct 14 18:05:04 2024"
-[dumpfile_size] 142373
+[dumpfile_mtime] "Fri Oct 18 15:15:59 2024"
+[dumpfile_size] 66053
 [savefile] "/Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/simulator/signal.gtkw"
-[timestart] 12313
+[timestart] 2772
 [size] 1296 600
 [pos] 24 20
-*-1,000000 12317 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+*-1,000000 2776 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 [markername] AA
 [markername] BB
 [markername] CC
@@ -45,35 +45,34 @@
 [sst_expanded] 1
 [sst_vpaned_height] 159
 @28
-TOP.v._j1.insnType[2:0]
-@22
-TOP.v._j1.literal[14:0]
-@28
 TOP.clock
 TOP.v._j1.spiStart
-TOP.v._j1.spiWrite
-TOP.v._j1.spiRead
 TOP.v.Flash.nChipSelect
+TOP.v.aShifter.spiEnable
+TOP.v._j1.eint
+TOP.v._j1.spiWrite
 @22
 TOP.v.aShifter.MOSI[15:0]
 @28
 TOP.v._j1.clock
+@22
+TOP.v.aShifter.MISO[15:0]
+TOP.v.aShifter.shifter[15:0]
+@28
+TOP.v._j1.spiRead
+@200
+-BRAMS          
+@28
+TOP.v._j1.ram.bram.isMemoryWrite
+@22
+TOP.v._j1.ram.bram.address[13:0]
+TOP.v._j1.ram.bram.toMemory[15:0]
 @2028
 ^1 /Users/lozinski/Documents/Products/FORTH/CODE/MECRISP/hanaforth/simulator/gtkwave-filters/alu.filter
 TOP.v._j1.opCode[4:0]
 @28
-TOP.v.aShifter.spiEnable
-TOP.v.aShifter.nChipSelect
-TOP.v._j1.eint
+TOP.v._j1.insnType[2:0]
 @22
-TOP.v.aShifter.shifter[15:0]
-@28
-TOP.v.Flash.IO0
-TOP.v.Flash.IO1
-TOP.v._j1.ram.flag
-@24
-TOP.v._j1.ram.address[13:0]
-@23
-TOP.v._j1.ram.fromMemory[15:0]
+TOP.v._j1.literal[14:0]
 [pattern_trace] 1
 [pattern_trace] 0
