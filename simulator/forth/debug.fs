@@ -1,4 +1,5 @@
-: test 0 >r ;
+: test 16030  >r ; \ 3e9e
+
 \ shows all
 \ : show decimal dup . @ .x .x cr ;    
 \  : show decimal dup dup . .x @ .x .x cr ;    
