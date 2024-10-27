@@ -1,5 +1,5 @@
 #!/bin/bash
-#./compile
+./compile
 
 # If out.fst does not exist, do not generate an error message. 
 rm -f -- out.fst
