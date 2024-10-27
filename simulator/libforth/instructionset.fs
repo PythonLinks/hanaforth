@@ -33,8 +33,7 @@
 : mem[T]     $1900 ;
 : spi@       $1a00 ;
 : spi!       $1b00 ;
-: CS1        $1e00 ;
-
+: spiStart   $1c00 ;
 
 : T->N       $0010 or ;
 : T->R       $0020 or ;
@@ -111,7 +110,8 @@
 :: @         mem[T]                  alu ;
 :: spi@      spi@        d+1         alu ;
 :: spi!      spi!        d-1         alu ;
-:: cs1       CS1                     alu ;
+:: spiStart  spiStart                alu ;
+:: spiEnd      T        fEINT        alu ;
 
 \ Elided words
 \ These words are supported by the hardware but are not

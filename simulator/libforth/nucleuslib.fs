@@ -1,4 +1,3 @@
-
 \ Swapforth Nucleus by James Bowman enhanced with constant folding and inline optimisations by Matthias Koch
 
 ; \ Return opcode for interrupt vector
@@ -22,7 +21,9 @@ header @                   :noname     @        ;
 
 header spi@                :noname     spi@     ;
 header spi!                :noname     spi!     ;
-header cs-                 :noname     cs1      ;
+header spiStart            :noname     spiStart ;
+header spiEnd              :noname     spiEnd   ; 
+
 header rdepth              :noname     rdepth   ;
 
 \ header !1                  :noname     !1       ;
