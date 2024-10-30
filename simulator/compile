@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #stop on error, unset variables or pipe failures. 
-set -euo pipefail
+#set -euo pipefail
 
 echo "Tidy up..."
 rm -f build/*
@@ -46,7 +46,7 @@ cat libforth/coredefinitions.fs  \
 cat libforth/insight.fs >> build/included.fs
 
 #This line is for building the boot script.  You should ignore it. 
-cat  forth/forward.fs forth/start.fs forth/process.fs  >> build/included.fs
+#cat  forth/forward.fs forth/start.fs forth/process.fs  >> build/included.fs
 
 osStr=$(uname)
 cpuStr=$(uname -m)
