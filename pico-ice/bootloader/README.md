@@ -24,3 +24,13 @@ It is quite easy to add a different gateware.
 Just edit the `compile` command file.
 
 The "./dfu" command flashes the device.
+
+To connect to the device
+
+sudo picocom --imap crcrlf,lfcrlf -b 115200 /dev/ttyACM1
+
+Good to first hit ``enter`` to clear the buffers.
+
+boot0
+
+boot1
