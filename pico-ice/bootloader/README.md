@@ -13,6 +13,7 @@ there.
 You can distinbuish the two gatewares by their titles
 
 Mecrisp-Ice 2.6 b
+
 Mecrisp-Ice 2.6
 
 The ```b``` stands for bootloader. 
@@ -23,4 +24,4 @@ Also the commands `boot0`, `boot1`, and
 It is quite easy to add a different gateware.
 Just edit the `compile` command file.
 
-The "./dfu" command flashes the device.
+The `./dfu` command flashes the device.
