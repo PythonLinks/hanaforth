@@ -13,6 +13,7 @@ there.
 You can distinbuish the two gatewares by their titles
 
 Mecrisp-Ice 2.6 b
+
 Mecrisp-Ice 2.6
 
 The ```b``` stands for bootloader. 
@@ -34,3 +35,4 @@ Good to first hit ``enter`` to clear the buffers.
 boot0
 
 boot1
+
