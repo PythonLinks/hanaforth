@@ -1,24 +1,26 @@
-# The Hana 1 Soft Core
+# Hana-1: Programmable I/O for FPGAs
 
-This repository contans a [simulator for the Hana 1](./simulator), 
-soft core stack machine running a small interpreter and compiler
-in simulation. 
+Hana-1 îs a programable soft core I/O processor for FPGAs. Instead of designing a circuit, just program your desired I/O functionality.  
 
-Hana 1 is the newest member of the J1 family of stack processors. Hana
-1 provides 16K 16 bit words of memory.  Compared to the popular J1a,
-the Hana 1 has twice the memory, much larger stacks (256 vs 16 words),
-[more hardware
-instructions](https://mecrisp-ice.readthedocs.io/en/latest/instruction-set.html),
-SPI access, a better bus, code folding, and a richer library, but
-requires 119 fewer LUTs, The J1a is larger because it implements the stacks in BRAMs. and requires a
-multiplexer to connect together 32 x 4Kbit block RAMs (BRAMs) into a
-single 8K word memory module.  The Hana 1 is smaller because it implements the data and return stack in 2 BRAMs, and uses a
-16K word hardcore single port RAM (SPRAM) to provide the bulk of the
-memory. The J1a cannot use the larger SPRAMs available on the more
-modern ICE40-UP FPGAs because the SPRAMs cannot be initialized in the
-bitstream, they require a bootloader.  Hana 1 includes one BRAM
-initialized with a compute kernel, a boot loader, and uses 2 BRAMs for
-stacks, freeing up 27 other BRAMs for other uses.
+This repository contains both a [simulator for the Hana 1](./simulator), and a number of gatewares for the [p(https://tinyvision.ai/products/pico-ice-fpga-trainer-board).
+
+
+[Documentation](https://mecrisp-ice.readthedocs.io/en/latest/instruction-set.html)
+
+The bootloader is a small modification of
+[Mecrisp-pi](https://github.com/PythonLinks/mecrisp-pi).  The
+simulator is for the more advanced Hana-1 cpu.  Hana-1 includes, SPI
+access, a better bus, code folding, and a richer library, but requires
+119 fewer LUTs, The J1a is larger because it implements the stacks in
+BRAMs. and requires a multiplexer to connect together 32 x 4Kbit block
+RAMs (BRAMs) into a single 8K word memory module.  The Hana 1 is
+smaller because it implements the data and return stack in 2 BRAMs,
+and uses a 16K word hardcore single port RAM (SPRAM) to provide the
+bulk of the memory. The J1a cannot use the larger SPRAMs available on
+the more modern ICE40-UP FPGAs because the SPRAMs cannot be
+initialized in the bitstream, they require a bootloader.  Hana 1
+includes one BRAM initialized with a compute kernel, a boot loader,
+and uses 2 BRAMs for stacks, freeing up 27 other BRAMs for other uses.
 Would you like more stacks with your Forth anyone?
 
 The Mecrisp Hayes Forth test suite was modified to run on the FPGA,

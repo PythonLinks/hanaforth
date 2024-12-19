@@ -9,7 +9,7 @@ This echo server flashes green every 3 seconds.  This is so that you know that i
 
 To flash the gateware first install dfu-util, then 
 
-dfu-util -a 1 -D hardware.bin
+dfu-util -a 1 -D echo.bin
 
 To talk to the FPGA, use picocom.
 
@@ -19,6 +19,6 @@ ls /dev | grep usb
 
 and chose the second tty
 
-picocom --omap crcrlf /dev/tty.usbmodem103
+picocom --omap crcrlf -b 115200 /dev/tty.usbmodem103
 
 The omap option converts the keyboard carriage return into a carriage return and line feed.

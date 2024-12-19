@@ -1,0 +1,1 @@
+sudo dfu-util -a 0 -D bootloader.bin

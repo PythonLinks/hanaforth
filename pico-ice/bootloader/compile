@@ -1,2 +1,2 @@
-icemulti -o hardware.bin -p0 ../pico-ice/j1a/j1a.bin  ../pico-ice/blinky/blinky.bin  ../pico-ice/echo-server/echo-server.bin  
+icemulti -v  -p0 j1a0.bin   j1NoBoot.bin > bootloader.bin
 
