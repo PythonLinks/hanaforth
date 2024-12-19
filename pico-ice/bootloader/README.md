@@ -24,7 +24,7 @@ Also the commands `boot0`, `boot1`, and
 It is quite easy to add a different gateware.
 Just edit the `compile` command file.
 
-The "./dfu" command flashes the device.
+The ``./dfu`` command flashes the device.
 
 To connect to the device
 
